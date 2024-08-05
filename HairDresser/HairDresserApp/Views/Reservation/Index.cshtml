@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hairdresser Appointment</title>
+</head>
+<body>
+    <h1>Hairdresser Appointment</h1>
+    <div class="text-center">
+        <div class="d-flex justify-content-end my-3">
+            <a class="btn btn-outline-success" asp-action="Create">
+                <i class="fa fa-plus"></i>
+                Create
+            </a>
+        </div>
+    </div>
+    <div>
+        <label for="ReservationDate">Select Date:</label>
+        <input type="ReservationDate" id="ReservationDate">
+        <button onclick="fetchAvailableTimeSlots()">Check Availability</button>
+    </div>
+    <div id="time-slots">
+        <!-- Available time slots will be displayed here -->
+    </div>
+    <button onclick="createReservation()">Submit</button>
+
+    <script>
+        let selectedTimeSlotId = null;
+
+        function fetchAvailableTimeSlots() {
+            const date = document.getElementById('date').value;
+            fetch(`/api/reservations/available-timeslots?date=${date}`)
+                .then(response => response.json())
+                .then(data => {
+                    const timeSlotsDiv = document.getElementById('time-slots');
+                    timeSlotsDiv.innerHTML = '';
+                    data.forEach(timeSlot => {
+                        const timeSlotButton = document.createElement('button');
+                        timeSlotButton.innerText = `${timeSlot.startTime} - ${timeSlot.endTime}`;
+                        timeSlotButton.onclick = () => selectTimeSlot(timeSlot.id);
+                        timeSlotsDiv.appendChild(timeSlotButton);
+                    });
+                });
+        }
+
+        function selectTimeSlot(timeSlotId) {
+            selectedTimeSlotId = timeSlotId;
+        }
+
+        function createReservation() {
+            const date = document.getElementById('date').value;
+            const reservation = {
+                customerId: 1, // Bunu değiştirin
+                hairdresserId: 1, // Bunu değiştirin
+                timeSlotId: selectedTimeSlotId,
+                date: date
+            };
+            fetch('/api/reservations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reservation)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Reservation created successfully!');
+                });
+        }
+    </script>
+</body>
+</html>

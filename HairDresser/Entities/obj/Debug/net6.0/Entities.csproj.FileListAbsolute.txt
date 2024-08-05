@@ -1,0 +1,12 @@
+D:\yazilim\c#\HairDresser\HairDresser\Entities\bin\Debug\net6.0\Entities.deps.json
+D:\yazilim\c#\HairDresser\HairDresser\Entities\bin\Debug\net6.0\Entities.dll
+D:\yazilim\c#\HairDresser\HairDresser\Entities\bin\Debug\net6.0\Entities.pdb
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.dll
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\refint\Entities.dll
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\Entities.pdb
+D:\yazilim\c#\HairDresser\HairDresser\Entities\obj\Debug\net6.0\ref\Entities.dll
