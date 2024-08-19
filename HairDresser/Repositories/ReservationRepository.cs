@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Dtos;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 using System;
@@ -18,8 +19,19 @@ namespace Repositories
         }
 
 
+		public void CreateOneReservation(Reservation reservation) =>Create(reservation);
 
-        public void CreateOneReservation(Reservation reservation) =>Create(reservation);
+        public void DeleteOneReservation(Reservation reservation) => Remove(reservation);
+
+        public IQueryable<Reservation> GetAllReservations(bool trackChanges) => FindAll(trackChanges);
+
+        public Reservation? GetOneReservation(int id, bool trackChanges)
+        {
+            return FindByCondition(r => r.ReservationId.Equals(id), trackChanges);
+        }
+
+
+		public void UpdateOneReservation(Reservation entity) => Update(entity);
     }
 }
 

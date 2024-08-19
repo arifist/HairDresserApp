@@ -14,44 +14,71 @@ namespace HairDresserApp.Controllers
         {
             _manager = manager;
         }
-        public IActionResult Create()
+        public IActionResult Index()
         {
             TempData["info"] = "Please fill the form.";
             return View();
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
+        //{
+        //	if (ModelState.IsValid)
+        //	{
+
+
+        //		_manager.ReservationService.CreateReservation(reservationDto);
+        //		TempData["success"] = $"{reservationDto.ReservationId} has been created.";
+        //		return RedirectToAction("Index");
+        //	}
+        //	return View();
+        //}
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
+        //{
+        //	if (ModelState.IsValid)
+        //	{
+        //		// Seçilen zaman diliminde başka bir rezervasyon var mı kontrol ediyoruz
+        //		if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate))
+        //		{
+        //			TempData["error"] = "Bu saatte zaten bir rezervasyon mevcut. Lütfen başka bir saat seçin.";
+        //			return View(reservationDto);
+        //		}
+
+        //		// Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
+        //		_manager.ReservationService.CreateReservation(reservationDto);
+        //		TempData["success"] = $"{reservationDto.ReservationId} rezervasyonunuz oluşturuldu.";
+        //		return RedirectToAction("Index");
+        //	}
+        //	return View();
+        //}
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] ReservationDtoForInsertion reservationDto)
+        public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
         {
             if (ModelState.IsValid)
             {
+                // Seçilen zaman diliminde başka bir rezervasyon var mı kontrol ediyoruz
+                if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate))
+                {
+                    return Json(new { success = false, message = "Bu saatte zaten bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
+                }
 
+                // Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
                 _manager.ReservationService.CreateReservation(reservationDto);
-                TempData["success"] = $"{reservationDto.ReservationId} has been created.";
-                return RedirectToAction("Index");
+                return Json(new { success = true, message = $"{reservationDto.ReservationId} rezervasyonunuz oluşturuldu." });
             }
-            return View();
+
+            return Json(new { success = false, message = "Geçersiz form verileri." });
         }
 
-        //[HttpGet("available-timeslots")]
-        //public IActionResult GetAvailableTimeSlots([FromQuery] DateTime date)
-        //{
-        //    var availableTimeSlots = _reservationService.GetAvailableTimeSlots(date);
-        //    return Ok(availableTimeSlots);
-        //}
 
-        //[HttpPost]
-        //public IActionResult CreateReservation([FromBody] Reservation reservation)
-        //{
-        //    _reservationService.CreateReservation(reservation);
-        //    return Ok(reservation);
-        //}
-
-        public IActionResult Index()
-        {
-            return View();
-        }
 
     }
 }

@@ -1,0 +1,39 @@
+﻿@model Reservation
+
+<div class="col-sm-12 col-md-4 my-2">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header text-center">
+            @Model.ReservationName
+        </div>
+
+
+        <div class="card-body">
+            <div class="card-text">
+                <div class="text-danger text-center lead p-2 rounded-2">
+                    Gun: @Model?.ReservationDay
+                </div>
+                <div class="text-danger text-center lead p-2 rounded-2">
+                    Saat: @Model?.ReservationHour
+                </div>
+            </div>
+            
+            <p class="card-text">
+                Not: @Model?.ReservationMessage
+            </p>
+            <div class="d-flex justify-content-center">
+                <div class="btn btn-group">
+
+                    <form id="@Model.ReservationId" asp-page="/cart" method="post">
+                        <input type="hidden" asp-for="ReservationId" />
+                        <button type="submit" class="btn btn-outline-primary mx-2">
+                            <i class="fa fa-cart-plus"></i>
+                            Onayla
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

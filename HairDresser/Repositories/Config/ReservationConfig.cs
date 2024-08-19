@@ -17,8 +17,8 @@ namespace Repositories.Config
             builder.HasKey(r => r.ReservationId);
 
             builder.HasData(
-                new Reservation() { ReservationId = 1, CustomerId=1},
-                new Reservation() { ReservationId = 2, CustomerId=2}
+                new Reservation() { ReservationId = 1, CustomerId=1, ReservationName="arif", ReservationDay=DateTime.Now, HairCutTypes="saç ve sakal"},
+                new Reservation() { ReservationId = 2, CustomerId=2, ReservationName = "mehmet" ,ReservationDay = DateTime.Now, HairCutTypes = "saç ve sakal" }
 
                 );
 

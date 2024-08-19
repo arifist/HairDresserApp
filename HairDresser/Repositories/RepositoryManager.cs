@@ -1,4 +1,5 @@
-﻿using Repositories.Contracts;
+﻿using Entities.Dtos;
+using Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Repositories
         public IReservationRepository Reservation => _reservationRepository;
 
 
-        public void Save()
+		public void Save()
         {
             _context.SaveChanges();
         }

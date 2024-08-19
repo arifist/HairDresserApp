@@ -1,0 +1,27 @@
+﻿@model ReservationListViewModel
+
+<div class="row">
+
+    <div class="col-md-9">
+        <div class="row my-3">
+            @foreach (Reservation rsv in Model.Reservations)
+            {
+                <partial name="_ReservationCard" model="@rsv" />
+            }
+        </div>
+        <div class="text-center">
+            <div page-model="@Model?.Pagination" page-action="Index" page-classes-enabled="true" page-class="btn"
+                 page-class-normal="btn-outline-dark" page-class-selected="btn-secondary" class="btn-group">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Footer {
+    <div>
+        Only for Index footer
+    </div>
+}
+
+

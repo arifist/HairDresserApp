@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SKrKxRnQgZo=",
+  "dgSpecHash": "qVEanHO4ZuY=",
   "success": true,
-  "projectFilePath": "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Repositories\\Repositories.csproj",
+  "projectFilePath": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Repositories\\Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arifk.ARIF.000\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
     "C:\\Users\\arifk.ARIF.000\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.0\\microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512",

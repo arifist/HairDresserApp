@@ -1,73 +1,149 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@model ReservationDtoForInsertion
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hairdresser Appointment</title>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+    <script src="script.js"></script>
+    <style>
+        .notification {
+            display: none; /* Varsayılan olarak gizli */
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+            .notification.error {
+                background-color: #f8d7da;
+                color: #721c24;
+            }
+
+            .notification.success {
+                background-color: #d4edda;
+                color: #155724;
+            }
+    </style>
 </head>
-<body>
-    <h1>Hairdresser Appointment</h1>
-    <div class="text-center">
-        <div class="d-flex justify-content-end my-3">
-            <a class="btn btn-outline-success" asp-action="Create">
-                <i class="fa fa-plus"></i>
-                Create
+
+<div class="text-center">
+    <div class="display-6">Create Reservation</div>
+</div>
+
+<!-- Dinamik bildirim alanı -->
+<div id="notification" class="notification"></div>
+
+<form method="post" enctype="multipart/form-data" id="reservationForm">
+    <div class="text-danger" asp-validation-summary="None"></div>
+
+    <div class="form-group my-3">
+        <label asp-for="ReservationName"></label>
+        <input asp-for="ReservationName" class="form-control" type="text" />
+    </div>
+
+    <div class="form-group my-3">
+        <label>Traş Türü:</label><br />
+        <div class="form-check">
+            <input asp-for="HairCutTypes" class="form-check-input" type="radio" id="hairCut" value="Saç" onchange="updateTimeOptions()" />
+            <label class="form-check-label" for="hairCut">Saç</label>
+        </div>
+        <div class="form-check">
+            <input asp-for="HairCutTypes" class="form-check-input" type="radio" id="beardTrim" value="Sakal" onchange="updateTimeOptions()" />
+            <label class="form-check-label" for="beardTrim">Sakal</label>
+        </div>
+        <div class="form-check">
+            <input asp-for="HairCutTypes" class="form-check-input" type="radio" id="hairAndBeard" value="Saç ve Sakal" onchange="updateTimeOptions()" />
+            <label class="form-check-label" for="hairAndBeard">Saç ve Sakal</label>
+        </div>
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="ReservationDay"></label>
+        <input asp-for="ReservationDay" class="form-control" id="reservationDay" placeholder="Tarih seçin" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="ReservationHour"></label>
+        <input asp-for="ReservationHour" class="form-control" id="reservationHour" placeholder="Saat seçin" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="ReservationMessage"></label>
+        <input asp-for="ReservationMessage" class="form-control" type="text" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Products
             </a>
         </div>
     </div>
-    <div>
-        <label for="ReservationDate">Select Date:</label>
-        <input type="ReservationDate" id="ReservationDate">
-        <button onclick="fetchAvailableTimeSlots()">Check Availability</button>
-    </div>
-    <div id="time-slots">
-        <!-- Available time slots will be displayed here -->
-    </div>
-    <button onclick="createReservation()">Submit</button>
+</form>
 
-    <script>
-        let selectedTimeSlotId = null;
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function updateFlatpickr() {
+            const haircutType = document.querySelector('input[name="HairCutTypes"]:checked')?.value;
+            let minuteIncrement = 30; // Varsayılan 30 dakika
 
-        function fetchAvailableTimeSlots() {
-            const date = document.getElementById('date').value;
-            fetch(`/api/reservations/available-timeslots?date=${date}`)
-                .then(response => response.json())
-                .then(data => {
-                    const timeSlotsDiv = document.getElementById('time-slots');
-                    timeSlotsDiv.innerHTML = '';
-                    data.forEach(timeSlot => {
-                        const timeSlotButton = document.createElement('button');
-                        timeSlotButton.innerText = `${timeSlot.startTime} - ${timeSlot.endTime}`;
-                        timeSlotButton.onclick = () => selectTimeSlot(timeSlot.id);
-                        timeSlotsDiv.appendChild(timeSlotButton);
-                    });
-                });
+            if (haircutType === "Saç ve Sakal") {
+                minuteIncrement = 60; // Saç ve Sakal seçilirse 60 dakika
+            }
+
+            flatpickr("#reservationDay", {
+                dateFormat: "Y-m-d",
+                locale: "tr"
+            });
+            flatpickr("#reservationHour", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+                locale: "tr",
+                minuteIncrement: minuteIncrement // Seçime göre dakika artışı
+            });
         }
 
-        function selectTimeSlot(timeSlotId) {
-            selectedTimeSlotId = timeSlotId;
-        }
+        // İlk başlatma
+        updateFlatpickr();
 
-        function createReservation() {
-            const date = document.getElementById('date').value;
-            const reservation = {
-                customerId: 1, // Bunu değiştirin
-                hairdresserId: 1, // Bunu değiştirin
-                timeSlotId: selectedTimeSlotId,
-                date: date
-            };
-            fetch('/api/reservations', {
+        // Tıraş türü değiştiğinde güncelleme
+        document.querySelectorAll('input[name="HairCutTypes"]').forEach(element => {
+            element.addEventListener('change', updateFlatpickr);
+        });
+
+        // Form gönderimi sırasında bildirim gösterimi
+        const form = document.getElementById('reservationForm');
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Formun normal şekilde gönderilmesini engelle
+
+            // Form verilerini topla
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
                 method: 'POST',
+                body: formData,
                 headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(reservation)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Reservation created successfully!');
-                });
-        }
-    </script>
-</body>
-</html>
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+            // Yanıtı işleme
+            const notification = document.getElementById('notification');
+            const result = await response.json();
+            if (result.success) {
+                notification.className = 'notification success'; // Başarı durumu
+                notification.textContent = result.message;
+            } else {
+                notification.className = 'notification error'; // Hata durumu
+                notification.textContent = result.message;
+            }
+            notification.style.display = 'block'; // Bildirimi göster
+        });
+    });
+</script>

@@ -13,6 +13,19 @@ namespace Services.Contracts
     {
 
         void CreateReservation(ReservationDtoForInsertion reservationDto);
+        IEnumerable<Reservation> GetAllReservations(bool trackChanges);
+        IEnumerable<Reservation> GetLastestReservations(int n, bool trackChanges);
+        //IEnumerable<Reservation> GetAllReservationsWithDetails(ReservationRequestParameters p);
+        //IEnumerable<Reservation> GetShowcaseReservations(bool trackChanges);
+        Reservation? GetOneReservation(int id, bool trackChanges);
+        void UpdateOneReservation(ReservationDtoForUpdate reservationDto);
+        void DeleteOneReservation(int id);
+        ReservationDtoForUpdate GetOneReservationForUpdate(int id, bool trackChanges);
 
-    }
+
+		bool IsReservationSlotAvailable(DateTime reservationDate);
+
+
+
+	}
 }

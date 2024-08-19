@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Entities.Dtos
 {
@@ -12,10 +13,20 @@ namespace Entities.Dtos
         public int ReservationId { get; init; }
         public int? CustomerId { get; init; }
         public Customer? Customer { get; init; }
-        public int? HairdresserId { get; init; }
-        public HairDresser? Hairdresser { get; init; }
-        public DateTime? ReservationDate { get; set; }
+        public DateTime ReservationDay { get; set; }
+        public String HairCutTypes { get; set; }
+        public DateTime ReservationHour { get; set; }
+        public string? ReservationMessage { get; set; }
+        public string ReservationName { get; set; }
         public string? ServiceType { get; init; }
-        public DateTime? Date { get; set; }
-    }
+        public DateTime? Date { get; set; } = DateTime.Now;
+
+		public DateTime ReservationDate
+		{
+			get
+			{
+				return ReservationDay.Date.Add(ReservationHour.TimeOfDay);
+			}
+		}
+	}
 }

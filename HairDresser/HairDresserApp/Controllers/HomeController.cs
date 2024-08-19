@@ -17,6 +17,10 @@ namespace HairDresserApp.Controllers
         {
             return View();
         }
+        public IActionResult Reservation()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

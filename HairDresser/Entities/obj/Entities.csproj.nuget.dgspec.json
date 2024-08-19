@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Entities\\Entities.csproj": {}
+    "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Entities\\Entities.csproj": {
+    "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Entities\\Entities.csproj",
+        "projectUniqueName": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Entities\\Entities.csproj",
+        "projectPath": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\arifk.ARIF.000\\.nuget\\packages\\",
-        "outputPath": "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Entities\\obj\\",
+        "outputPath": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\arifk.ARIF.000\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

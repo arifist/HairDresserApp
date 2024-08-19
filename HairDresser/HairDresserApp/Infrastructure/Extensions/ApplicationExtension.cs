@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 
-namespace StoreApp.Infrastructure.Extensions
+namespace HairDresserApp.Infrastructure.Extensions
 {
     public static class ApplicationExtension
     {

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairDresserApp", "HairDresserApp\HairDresserApp.csproj", "{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairDresserApp", "HairDresserApp\HairDresserApp.csproj", "{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{4EC55BE2-4172-438E-9F60-2F753A46C697}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{4EC55BE2-4172-438E-9F60-2F753A46C697}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

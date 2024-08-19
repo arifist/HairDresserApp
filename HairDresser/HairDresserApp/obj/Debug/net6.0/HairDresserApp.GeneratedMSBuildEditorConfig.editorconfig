@@ -9,55 +9,131 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HairDresserApp
 build_property.RootNamespace = HairDresserApp
-build_property.ProjectDir = D:\yazilim\c#\HairDresser\HairDresser\HairDresserApp\
+build_property.ProjectDir = D:\yazilim\c#\HairDresser_eski\HairDresser\HairDresserApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\yazilim\c#\HairDresser\HairDresser\HairDresserApp
+build_property.MSBuildProjectDirectory = D:\yazilim\c#\HairDresser_eski\HairDresser\HairDresserApp
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Home/Index.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Homes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Reservations/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVzZXJ2YXRpb25zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Shared/_Navbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9OYXZiYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/Shared/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/User/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/User/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Home/Privacy.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Reservation/Create.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Reservation/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Reservation/Index.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Reservation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Shared/Error.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Shared/_Footer.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Shared/_Navbar.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_LoginMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbk1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_ReservationCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZXNlcnZhdGlvbkNhcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/_ViewImports.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/_ViewStart.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/yazilim/c\#/HairDresser/HairDresser/HairDresserApp/Views/Shared/_Layout.cshtml]
+[D:/yazilim/c\#/HairDresser_eski/HairDresser/HairDresserApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-i07gxay7qo

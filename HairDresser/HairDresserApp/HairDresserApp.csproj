@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\" />
+    <Folder Include="Components\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>

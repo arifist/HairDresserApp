@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Aax0/uSPmwQ=",
+  "dgSpecHash": "2XSBIcIuFGQ=",
   "success": true,
-  "projectFilePath": "D:\\yazilim\\c#\\HairDresser\\HairDresser\\Services\\Services.csproj",
+  "projectFilePath": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arifk.ARIF.000\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\arifk.ARIF.000\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

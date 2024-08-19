@@ -11,6 +11,7 @@ namespace Services.Contracts
         IReservationService ReservationService { get; }
         IHairDresserService HairDresserService { get; }
         ICustomerService CustomerService { get; }
+        IAuthService AuthService { get; }
 
     }
 }

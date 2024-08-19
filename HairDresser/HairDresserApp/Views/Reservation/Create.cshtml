@@ -1,5 +1,12 @@
 ﻿@model ReservationDtoForInsertion
 
+<head>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+
 <div class="text-center">
     <div class="display-6">Create Reservation</div>
 </div>
@@ -10,12 +17,24 @@
 
 
 
+    <div class="form-group my-3">
+        <label asp-for="ReservationName"></label>
+        <input asp-for="ReservationName" class="form-control" type="text" />
+    </div>
+@*     <div class="form-group my-3">
+        <label asp-for="ReservationDate"></label>
+        <input asp-for="ReservationDate" class="form-control" id="reservationDate" placeholder="Select date and time" />
+    </div> *@
 
     <div class="form-group my-3">
-        <label asp-for="ReservationDate"></label>
-        <input asp-for="ReservationDate" class="form-control" type="datetime" />
+        <label asp-for="ReservationDay"></label>
+        <input asp-for="ReservationDay" class="form-control" id="reservationDate" placeholder="Tarih seçin" />
     </div>
 
+    <div class="form-group my-3">
+        <label asp-for="ReservationMessage"></label>
+        <input asp-for="ReservationMessage" class="form-control" type="text" />
+    </div>
 
     <div class="form-group my-3">
         <div class="btn-group">
@@ -30,3 +49,20 @@
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#reservationDate", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            minDate: "today",
+            time_24hr: true,
+            minuteIncrement: 30, // Zaman aralıklarını 30 dakikaya ayarlar
+            locale: "tr", // Türkçe yerelleştirme
+            onChange: function (selectedDates, dateStr, instance) {
+                // Bu kısımda seçilen tarihe göre saati kontrol edebilirsiniz.
+                // Örneğin, seçilen tarihteki saatleri engellemek isterseniz burada yazabilirsiniz.
+            }
+        });
+    });
+</script>

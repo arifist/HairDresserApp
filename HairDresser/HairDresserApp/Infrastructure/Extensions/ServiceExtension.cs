@@ -1,12 +1,13 @@
 using Entities.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
 using Services;
 using Services.Contracts;
 
-namespace StoreApp.Infrastructure.Extensions
+namespace HairDresserApp.Infrastructure.Extensions
 {
     public static class ServiceExtension
     {
@@ -22,7 +23,19 @@ namespace StoreApp.Infrastructure.Extensions
             });
         }
 
-
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+            })
+            .AddEntityFrameworkStores<RepositoryContext>();
+        }
 
         public static void ConfigureSession(this IServiceCollection services)
         {
@@ -49,6 +62,8 @@ namespace StoreApp.Infrastructure.Extensions
             services.AddScoped<ICustomerService, CustomerManager>();
             services.AddScoped<IHairDresserService, HairDresserManager>();
             services.AddScoped<IReservationService, ReservationManager>();
+            services.AddScoped<IAuthService, AuthManager>();
+
         }
 
         public static void ConfigureApplicationCookie(this IServiceCollection services)
