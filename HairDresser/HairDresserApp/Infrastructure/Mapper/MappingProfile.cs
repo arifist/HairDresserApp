@@ -2,6 +2,7 @@ using AutoMapper;
 using Entities.Dtos;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
+using Repositories.Config;
 
 namespace StoreApp.Infrastructure.Mapper
 {
@@ -10,10 +11,12 @@ namespace StoreApp.Infrastructure.Mapper
         public MappingProfile()
         {
             CreateMap<ReservationDtoForInsertion, Reservation>();
-            //CreateMap<ProductDtoForInsertion, Product>();
-            //CreateMap<ProductDtoForUpdate, Product>().ReverseMap();
-            //CreateMap<UserDtoForCreation, IdentityUser>();
-            //CreateMap<UserDtoForUpdate, IdentityUser>().ReverseMap();
+            CreateMap<UserDtoForCreation, IdentityUser>();
+            CreateMap<UserDtoForUpdate, IdentityUser>().ReverseMap();
+            CreateMap<IdentityUser, UserDto>();
+            CreateMap<WorkTimeDtoForUpdate, WorkTime>();
+
+
         }
     }
 }

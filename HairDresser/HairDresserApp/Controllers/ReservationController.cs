@@ -58,16 +58,38 @@ namespace HairDresserApp.Controllers
         //}
 
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Seçilen zaman diliminde başka bir rezervasyon var mı kontrol ediyoruz
+        //        if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate))
+        //        {
+        //            return Json(new { success = false, message = "Bu saatte zaten bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
+        //        }
+
+        //        // Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
+        //        _manager.ReservationService.CreateReservation(reservationDto);
+        //        return Json(new { success = true, message = $"{reservationDto.ReservationId} rezervasyonunuz oluşturuldu." });
+        //    }
+
+        //    return Json(new { success = false, message = "Geçersiz form verileri." });
+        //}
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
         {
             if (ModelState.IsValid)
             {
-                // Seçilen zaman diliminde başka bir rezervasyon var mı kontrol ediyoruz
-                if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate))
+                // Saç ve sakal kontrolünü ekleyerek zaman diliminde başka bir rezervasyon olup olmadığını kontrol ediyoruz
+                if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate, reservationDto.HairCutTypes))
                 {
-                    return Json(new { success = false, message = "Bu saatte zaten bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
+                    return Json(new { success = false, message = "Bu saatte veya 30 dakika sonrası için uygun olmayan bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
                 }
 
                 // Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
@@ -77,6 +99,7 @@ namespace HairDresserApp.Controllers
 
             return Json(new { success = false, message = "Geçersiz form verileri." });
         }
+
 
 
 

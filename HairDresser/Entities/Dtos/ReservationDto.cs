@@ -11,8 +11,6 @@ namespace Entities.Dtos
     public record ReservationDto
     {
         public int ReservationId { get; init; }
-        public int? CustomerId { get; init; }
-        public Customer? Customer { get; init; }
         public DateTime ReservationDay { get; set; }
         public String HairCutTypes { get; set; }
         public DateTime ReservationHour { get; set; }
@@ -20,8 +18,9 @@ namespace Entities.Dtos
         public string ReservationName { get; set; }
         public string? ServiceType { get; init; }
         public DateTime? Date { get; set; } = DateTime.Now;
-
-		public DateTime ReservationDate
+        //public DateTime WorkStartTime { get; set; }
+        //public DateTime WorkEndTime { get; set; }
+        public DateTime ReservationDate
 		{
 			get
 			{

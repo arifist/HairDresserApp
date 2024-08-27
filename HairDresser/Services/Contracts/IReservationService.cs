@@ -23,7 +23,7 @@ namespace Services.Contracts
         ReservationDtoForUpdate GetOneReservationForUpdate(int id, bool trackChanges);
 
 
-		bool IsReservationSlotAvailable(DateTime reservationDate);
+		bool IsReservationSlotAvailable(DateTime reservationDate, string hairCutType);
 
 
 

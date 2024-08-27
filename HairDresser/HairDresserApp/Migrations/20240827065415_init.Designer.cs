@@ -11,7 +11,7 @@ using Repositories;
 namespace HairDresserApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240819123707_init")]
+    [Migration("20240827065415_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,18 +87,12 @@ namespace HairDresserApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime?>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("HairCutTypes")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("HairDresserId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ReservationDate")
                         .HasColumnType("TEXT");
@@ -118,34 +112,53 @@ namespace HairDresserApp.Migrations
 
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("HairDresserId");
-
                     b.ToTable("Reservations");
 
                     b.HasData(
                         new
                         {
                             ReservationId = 1,
-                            CustomerId = 1,
-                            Date = new DateTime(2024, 8, 19, 15, 37, 7, 384, DateTimeKind.Local).AddTicks(2916),
+                            Date = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6476),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 8, 19, 15, 37, 7, 384, DateTimeKind.Local).AddTicks(2933),
+                            ReservationDay = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6492),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "arif"
                         },
                         new
                         {
                             ReservationId = 2,
-                            CustomerId = 2,
-                            Date = new DateTime(2024, 8, 19, 15, 37, 7, 384, DateTimeKind.Local).AddTicks(2935),
+                            Date = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6494),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 8, 19, 15, 37, 7, 384, DateTimeKind.Local).AddTicks(2937),
+                            ReservationDay = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6495),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "mehmet"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.WorkTime", b =>
+                {
+                    b.Property<int>("WorkTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("WorkEndTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("WorkStartTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("WorkTimeId");
+
+                    b.ToTable("WorkTimes");
+
+                    b.HasData(
+                        new
+                        {
+                            WorkTimeId = 1,
+                            WorkEndTime = new DateTime(2024, 8, 6, 22, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkStartTime = new DateTime(2024, 8, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -177,22 +190,22 @@ namespace HairDresserApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c06dac1a-d326-434b-b10b-139602c20e31",
-                            ConcurrencyStamp = "78d95766-f758-4d65-b238-b2cb20b6370a",
+                            Id = "83924fe1-51c0-4626-a0cd-bf9ca77b6172",
+                            ConcurrencyStamp = "cef762ff-f780-46d8-974b-7ce89a35ea00",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "744749f8-fc73-47d5-aa36-5d3ba31a36f2",
-                            ConcurrencyStamp = "254b028a-60ea-4f99-8fd2-a8b979924b80",
+                            Id = "1ad2859c-ff28-4204-b8c5-7e0b273a5c45",
+                            ConcurrencyStamp = "10d77d67-140d-42bd-b913-1c56405c7cf3",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "06f00b1b-747a-4329-b517-f37ed259cc45",
-                            ConcurrencyStamp = "11e1a79a-1ef3-4d6b-ba0e-804bc39f5669",
+                            Id = "6e1c36ab-4e40-4a17-a179-9e0ba6223c58",
+                            ConcurrencyStamp = "4ffa30d9-1252-4800-bd95-1f06f4fa5393",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -364,19 +377,6 @@ namespace HairDresserApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Models.Reservation", b =>
-                {
-                    b.HasOne("Entities.Models.Customer", "Customer")
-                        .WithMany("Reservations")
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Entities.Models.HairDresser", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("HairDresserId");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -426,16 +426,6 @@ namespace HairDresserApp.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Entities.Models.Customer", b =>
-                {
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("Entities.Models.HairDresser", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

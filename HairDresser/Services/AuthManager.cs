@@ -2,6 +2,7 @@ using AutoMapper;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Services.Contracts;
+using System.Security.Claims;
 
 namespace Services
 {
@@ -89,6 +90,11 @@ namespace Services
                 var r2 = await _userManager.AddToRolesAsync(user, userDto.Roles);
             }
             return;
+        }
+        public async Task<UserDto> GetUserDtoAsync(ClaimsPrincipal user)
+        {
+            var identityUser = await _userManager.GetUserAsync(user);
+            return _mapper.Map<UserDto>(identityUser);
         }
     }
 }

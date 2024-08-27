@@ -54,6 +54,8 @@ namespace HairDresserApp.Infrastructure.Extensions
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IHairDresserRepository, HairDresserRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<IWorkTimeRepository, WorkTimeRepository>();
+
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -63,6 +65,7 @@ namespace HairDresserApp.Infrastructure.Extensions
             services.AddScoped<IHairDresserService, HairDresserManager>();
             services.AddScoped<IReservationService, ReservationManager>();
             services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IWorkTimeService, WorkTimeManager>();
 
         }
 

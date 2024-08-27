@@ -1,5 +1,6 @@
 using Entities.Dtos;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Services.Contracts
 {
@@ -13,5 +14,8 @@ namespace Services.Contracts
         Task Update(UserDtoForUpdate userDto);
         Task<IdentityResult> ResetPassword(ResetPasswordDto model);
         Task<IdentityResult> DeleteOneUser(string userName);
+
+        Task<UserDto> GetUserDtoAsync(ClaimsPrincipal user);
+
     }
 }

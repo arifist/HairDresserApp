@@ -14,13 +14,15 @@ namespace Services
         private readonly ICustomerService _customerService;
         private readonly IHairDresserService _hairDresserService;
         private readonly IAuthService _authService;
+        private readonly IWorkTimeService _workTimeService;
 
-        public ServiceManager(IReservationService reservationService ,ICustomerService customerService, IHairDresserService hairDresserService, IAuthService authService)
+        public ServiceManager(IReservationService reservationService ,ICustomerService customerService, IHairDresserService hairDresserService, IAuthService authService,IWorkTimeService workTimeService)
         {
             _reservationService = reservationService;
             _customerService = customerService;
             _hairDresserService = hairDresserService;
             _authService = authService;
+            _workTimeService = workTimeService;
 
         }
 
@@ -31,6 +33,8 @@ namespace Services
         public ICustomerService CustomerService => _customerService;
 
         public IAuthService AuthService => _authService;
+
+        public IWorkTimeService WorkTimeService => _workTimeService;
 
 
 

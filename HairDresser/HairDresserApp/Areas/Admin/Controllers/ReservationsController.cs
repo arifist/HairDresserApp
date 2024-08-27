@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 
-namespace HairDresserApp.Admin.Controllers
+namespace HairDresserApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ReservationsController : Controller
     {
         private readonly IServiceManager _manager;

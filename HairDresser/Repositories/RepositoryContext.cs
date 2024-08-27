@@ -16,6 +16,7 @@ namespace Repositories
         public DbSet<Customer> Customers { get; set; }
         public DbSet<HairDresser> Hairdressers { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<WorkTime> WorkTimes { get; set; }
 
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)
@@ -27,8 +28,6 @@ namespace Repositories
         {
             base.OnModelCreating(modelBuilder);
 
-            // modelBuilder.ApplyConfiguration(new ProductConfig());
-            // modelBuilder.ApplyConfiguration(new CategoryConfig());
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

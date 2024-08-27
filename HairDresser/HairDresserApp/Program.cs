@@ -65,5 +65,5 @@ builder.Services.AddControllers();
 
 app.ConfigureAndCheckMigration();
 app.ConfigureLocalization();
-//app.ConfigureDefaultAdminUser();
+app.ConfigureDefaultAdminUser();
 app.Run();

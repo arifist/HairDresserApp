@@ -14,13 +14,17 @@ namespace Repositories
         private readonly ICustomerRepository _customerRepository;
         private readonly IReservationRepository _reservationRepository;
         private readonly IHairDresserRepository _hairDresserRepository;
+        private readonly IWorkTimeRepository _workTimeRepository;
 
-        public RepositoryManager(RepositoryContext context, ICustomerRepository customerRepository, IReservationRepository reservationRepository, IHairDresserRepository hairDresserRepository)
+
+        public RepositoryManager(RepositoryContext context, ICustomerRepository customerRepository, IReservationRepository reservationRepository, IHairDresserRepository hairDresserRepository, IWorkTimeRepository workTimeRepository)
         {
             _context = context;
             _customerRepository = customerRepository;
             _reservationRepository = reservationRepository;
             _hairDresserRepository = hairDresserRepository;
+            _workTimeRepository = workTimeRepository;
+
         }
 
 
@@ -30,8 +34,9 @@ namespace Repositories
 
         public IReservationRepository Reservation => _reservationRepository;
 
+        public IWorkTimeRepository WorkTime => _workTimeRepository;
 
-		public void Save()
+        public void Save()
         {
             _context.SaveChanges();
         }

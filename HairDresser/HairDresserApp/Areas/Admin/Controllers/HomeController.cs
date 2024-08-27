@@ -1,10 +1,12 @@
 ﻿using HairDresserApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HairDresserApp.Controllers
+namespace HairDresserApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class HomesController : Controller
     {
         private readonly ILogger<HomesController> _logger;
