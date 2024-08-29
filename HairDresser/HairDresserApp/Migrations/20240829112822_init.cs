@@ -88,7 +88,9 @@ namespace HairDresserApp.Migrations
                     ReservationMessage = table.Column<string>(type: "TEXT", nullable: true),
                     ReservationName = table.Column<string>(type: "TEXT", nullable: false),
                     HairCutTypes = table.Column<string>(type: "TEXT", nullable: false),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,17 +220,17 @@ namespace HairDresserApp.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1ad2859c-ff28-4204-b8c5-7e0b273a5c45", "10d77d67-140d-42bd-b913-1c56405c7cf3", "Editor", "EDITOR" });
+                values: new object[] { "33fd8425-231a-42dc-a8f1-f43275e82112", "b52a7722-efe7-4e11-9563-76d2fa745c05", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6e1c36ab-4e40-4a17-a179-9e0ba6223c58", "4ffa30d9-1252-4800-bd95-1f06f4fa5393", "Admin", "ADMIN" });
+                values: new object[] { "b39eb095-43a2-49d5-91d6-620dda304e81", "a820418a-24eb-420c-b128-fdd58da49900", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "83924fe1-51c0-4626-a0cd-bf9ca77b6172", "cef762ff-f780-46d8-974b-7ce89a35ea00", "User", "USER" });
+                values: new object[] { "dfeaad42-e58a-42e4-a254-97a209a3e85e", "40a9b81d-2e82-4fc1-b2e5-2b51008be1d8", "Editor", "EDITOR" });
 
             migrationBuilder.InsertData(
                 table: "Customers",
@@ -252,13 +254,13 @@ namespace HairDresserApp.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reservations",
-                columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName" },
-                values: new object[] { 1, new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6476), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6492), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "arif" });
+                columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName", "UserId", "UserName" },
+                values: new object[] { 1, new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6235), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6254), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "arif", null, null });
 
             migrationBuilder.InsertData(
                 table: "Reservations",
-                columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName" },
-                values: new object[] { 2, new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6494), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6495), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mehmet" });
+                columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName", "UserId", "UserName" },
+                values: new object[] { 2, new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6257), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6258), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mehmet", null, null });
 
             migrationBuilder.InsertData(
                 table: "WorkTimes",

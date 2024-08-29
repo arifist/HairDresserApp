@@ -28,13 +28,32 @@ namespace Services
 
 
 
-		public void CreateReservation(ReservationDtoForInsertion reservationDto)
-        {
-            Reservation reservation = _mapper.Map<Reservation>(reservationDto);
-            _manager.Reservation.Create(reservation);
-            _manager.Save();
-        }
+        //public void CreateReservation(ReservationDtoForInsertion reservationDto)
+        //      {
+        //          Reservation reservation = _mapper.Map<Reservation>(reservationDto);
+        //          _manager.Reservation.Create(reservation);
+        //          _manager.Save();
+        //      }
 
+
+        public void CreateReservation(ReservationDtoForInsertion reservationDto)
+        {
+            var reservation = new Reservation
+            {
+                ReservationDay = reservationDto.ReservationDay,
+                ReservationHour = reservationDto.ReservationHour,
+                ReservationDate = reservationDto.ReservationDate,
+                ReservationMessage = reservationDto.ReservationMessage,
+                ReservationName = reservationDto.ReservationName,
+                HairCutTypes = reservationDto.HairCutTypes,
+                UserId = reservationDto.UserId, // Kullanıcı ID
+                UserName = reservationDto.UserName // Kullanıcı Adı
+            };
+
+            _manager.Reservation.CreateOneReservation(reservation);
+            _manager.Save();
+
+        }
 
 
         public void DeleteOneReservation(int id)

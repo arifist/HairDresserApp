@@ -10,6 +10,7 @@ public class Reservation
     public string ReservationName { get; set; }
     public String HairCutTypes { get; set; }
     public DateTime? Date { get; set; } = DateTime.Now;
-
+    public string? UserId { get; set; }
+    public string? UserName { get; set; }
 
 }

@@ -11,7 +11,7 @@ using Repositories;
 namespace HairDresserApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240827065415_init")]
+    [Migration("20240829112822_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,6 +110,12 @@ namespace HairDresserApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ReservationId");
 
                     b.ToTable("Reservations");
@@ -118,20 +124,20 @@ namespace HairDresserApp.Migrations
                         new
                         {
                             ReservationId = 1,
-                            Date = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6476),
+                            Date = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6235),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6492),
+                            ReservationDay = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6254),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "arif"
                         },
                         new
                         {
                             ReservationId = 2,
-                            Date = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6494),
+                            Date = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6257),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 8, 27, 9, 54, 15, 61, DateTimeKind.Local).AddTicks(6495),
+                            ReservationDay = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6258),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "mehmet"
                         });
@@ -190,22 +196,22 @@ namespace HairDresserApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "83924fe1-51c0-4626-a0cd-bf9ca77b6172",
-                            ConcurrencyStamp = "cef762ff-f780-46d8-974b-7ce89a35ea00",
+                            Id = "b39eb095-43a2-49d5-91d6-620dda304e81",
+                            ConcurrencyStamp = "a820418a-24eb-420c-b128-fdd58da49900",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1ad2859c-ff28-4204-b8c5-7e0b273a5c45",
-                            ConcurrencyStamp = "10d77d67-140d-42bd-b913-1c56405c7cf3",
+                            Id = "dfeaad42-e58a-42e4-a254-97a209a3e85e",
+                            ConcurrencyStamp = "40a9b81d-2e82-4fc1-b2e5-2b51008be1d8",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "6e1c36ab-4e40-4a17-a179-9e0ba6223c58",
-                            ConcurrencyStamp = "4ffa30d9-1252-4800-bd95-1f06f4fa5393",
+                            Id = "33fd8425-231a-42dc-a8f1-f43275e82112",
+                            ConcurrencyStamp = "b52a7722-efe7-4e11-9563-76d2fa745c05",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
