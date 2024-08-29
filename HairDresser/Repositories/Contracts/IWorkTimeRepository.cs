@@ -11,6 +11,8 @@ namespace Repositories.Contracts
     {
         void UpdateOneWorkTime(WorkTime entity);
         //WorkTime? GetOneWorkTime(int id, bool trackChanges);
+        Task<WorkTime> GetWorkTimeAsync(int id);
+
 
     }
 }

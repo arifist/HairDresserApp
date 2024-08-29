@@ -11,12 +11,11 @@ namespace Repositories.Contracts
     {
         void CreateOneReservation(Reservation reservation);
         IQueryable<Reservation> GetAllReservations(bool trackChanges);
-        //IQueryable<Reservation> GetAllReservationsWithDetails(ProductRequestParameters p);
-        //IQueryable<Reservation> GetShowcaseReservations(bool trackChanges);
+
         Reservation? GetOneReservation(int id, bool trackChanges);
         void DeleteOneReservation(Reservation reservation);
         void UpdateOneReservation(Reservation entity);
-		//Task<Reservation> GetReservationByDateTimeAsync(DateTime date, string hour);
 
-	}
+
+    }
 }

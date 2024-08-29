@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Dtos;
 using Entities.Models;
+using Repositories;
 using Repositories.Contracts;
 using Services.Contracts;
 using System;
@@ -45,6 +46,15 @@ namespace Services
         //    return workTimeDto;
         //}
 
+        public async Task<WorkTimeDto> GetWorkTimeAsync(int id)
+        {
+            var workTime = await _manager.WorkTime.GetWorkTimeAsync(id);
+            return new WorkTimeDto
+            {
+                WorkStartTime = workTime.WorkStartTime,
+                WorkEndTime = workTime.WorkEndTime
+            };
+        }
 
     }
 }

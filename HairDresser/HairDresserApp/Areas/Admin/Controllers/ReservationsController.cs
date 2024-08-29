@@ -28,5 +28,8 @@ namespace HairDresserApp.Areas.Admin.Controllers
             ViewData["Title"] = model?.ReservationName;
             return View(model);
         }
+
+
+
     }
 }

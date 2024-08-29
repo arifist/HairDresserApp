@@ -15,6 +15,7 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<UserDtoForUpdate, IdentityUser>().ReverseMap();
             CreateMap<IdentityUser, UserDto>();
             CreateMap<WorkTimeDtoForUpdate, WorkTime>();
+            CreateMap<WorkTimeDto, WorkTime>();
 
 
         }

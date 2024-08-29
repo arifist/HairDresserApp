@@ -65,7 +65,9 @@
 
     <div class="form-group my-3">
         <label asp-for="ReservationHour"></label>
-        <input asp-for="ReservationHour" class="form-control" id="reservationHour" placeholder="Saat seçin" />
+        <select asp-for="ReservationHour" class="form-control" id="reservationHour">
+            <!-- Saat seçenekleri burada dinamik olarak eklenecek -->
+        </select>
     </div>
 
     <div class="form-group my-3">
@@ -94,19 +96,60 @@
             let minuteIncrement = 30; // Varsayılan 30 dakika
 
             if (haircutType === "Saç ve Sakal") {
-                minuteIncrement = 30; // Saç ve Sakal seçilirse 60 dakika
+                minuteIncrement = 60; // Saç ve Sakal seçilirse 60 dakika
             }
 
             flatpickr("#reservationDay", {
                 dateFormat: "Y-m-d",
-                locale: "tr"
-            });
-            flatpickr("#reservationHour", {
-                enableTime: true,
-                noCalendar: true,
-                dateFormat: "H:i",
                 locale: "tr",
-                minuteIncrement: minuteIncrement // Seçime göre dakika artışı
+                onChange: function (selectedDates, dateStr, instance) {
+                    fetchOccupiedHours(dateStr); // Tarih değiştiğinde dolu saatleri getir
+                }
+            });
+
+            // Saat seçeneklerini oluştur
+            const hourSelect = document.getElementById('reservationHour');
+            hourSelect.innerHTML = ''; // Önceki seçenekleri temizle
+
+            const startTime = flatpickr.parseDate("@ViewBag.WorkStartTime", "H:i");
+            const endTime = flatpickr.parseDate("@ViewBag.WorkEndTime", "H:i");
+
+            let currentTime = new Date(startTime);
+
+            while (currentTime <= endTime) {
+                const optionValue = flatpickr.formatDate(currentTime, "H:i");
+
+                // Gizlenecek saatler
+                const hiddenHours = ["12:00", "12:30"];
+
+                if (!hiddenHours.includes(optionValue)) {
+                    const option = document.createElement('option');
+                    option.value = optionValue;
+                    option.textContent = optionValue;
+                    hourSelect.appendChild(option);
+                }
+
+                currentTime.setMinutes(currentTime.getMinutes() + minuteIncrement);
+            }
+        }
+
+        async function fetchOccupiedHours(date) {
+            const response = await fetch(`/Reservation/GetOccupiedHours?date=${date}`);
+            const occupiedHours = await response.json();
+
+            updateHourOptions(occupiedHours);
+        }
+
+        function updateHourOptions(occupiedHours) {
+            const hourSelect = document.getElementById('reservationHour');
+            const options = hourSelect.querySelectorAll('option');
+
+            options.forEach(option => {
+                if (occupiedHours.includes(option.value)) {
+                    option.style.display = 'none'; // Dolu saatleri gizle
+                } else {
+                    option.style.display = ''; // Diğer saatleri göster
+                }
             });
         }
 
@@ -146,4 +189,5 @@
             notification.style.display = 'block'; // Bildirimi göster
         });
     });
+
 </script>

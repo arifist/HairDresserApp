@@ -14,69 +14,19 @@ namespace HairDresserApp.Controllers
         {
             _manager = manager;
         }
-        public IActionResult Index()
+
+
+
+        public async Task<IActionResult> Index()
         {
+
+
+            var workTime = await _manager.WorkTimeService.GetWorkTimeAsync(1);
+            ViewBag.WorkStartTime = workTime.WorkStartTime.ToString("HH:mm");
+            ViewBag.WorkEndTime = workTime.WorkEndTime.ToString("HH:mm");
             TempData["info"] = "Please fill the form.";
             return View();
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
-        //{
-        //	if (ModelState.IsValid)
-        //	{
-
-
-        //		_manager.ReservationService.CreateReservation(reservationDto);
-        //		TempData["success"] = $"{reservationDto.ReservationId} has been created.";
-        //		return RedirectToAction("Index");
-        //	}
-        //	return View();
-        //}
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
-        //{
-        //	if (ModelState.IsValid)
-        //	{
-        //		// Seçilen zaman diliminde başka bir rezervasyon var mı kontrol ediyoruz
-        //		if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate))
-        //		{
-        //			TempData["error"] = "Bu saatte zaten bir rezervasyon mevcut. Lütfen başka bir saat seçin.";
-        //			return View(reservationDto);
-        //		}
-
-        //		// Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
-        //		_manager.ReservationService.CreateReservation(reservationDto);
-        //		TempData["success"] = $"{reservationDto.ReservationId} rezervasyonunuz oluşturuldu.";
-        //		return RedirectToAction("Index");
-        //	}
-        //	return View();
-        //}
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Seçilen zaman diliminde başka bir rezervasyon var mı kontrol ediyoruz
-        //        if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate))
-        //        {
-        //            return Json(new { success = false, message = "Bu saatte zaten bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
-        //        }
-
-        //        // Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
-        //        _manager.ReservationService.CreateReservation(reservationDto);
-        //        return Json(new { success = true, message = $"{reservationDto.ReservationId} rezervasyonunuz oluşturuldu." });
-        //    }
-
-        //    return Json(new { success = false, message = "Geçersiz form verileri." });
-        //}
 
 
 
@@ -84,15 +34,15 @@ namespace HairDresserApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index([FromForm] ReservationDtoForInsertion reservationDto)
         {
+
+
             if (ModelState.IsValid)
             {
-                // Saç ve sakal kontrolünü ekleyerek zaman diliminde başka bir rezervasyon olup olmadığını kontrol ediyoruz
                 if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate, reservationDto.HairCutTypes))
                 {
                     return Json(new { success = false, message = "Bu saatte veya 30 dakika sonrası için uygun olmayan bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
                 }
 
-                // Rezervasyon mevcut değilse, yeni rezervasyonu kaydediyoruz
                 _manager.ReservationService.CreateReservation(reservationDto);
                 return Json(new { success = true, message = $"{reservationDto.ReservationId} rezervasyonunuz oluşturuldu." });
             }
@@ -100,6 +50,20 @@ namespace HairDresserApp.Controllers
             return Json(new { success = false, message = "Geçersiz form verileri." });
         }
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetOccupiedHours(DateTime date)
+        {
+            var reservations = _manager.ReservationService.GetReservationsByDay(date, false);
+
+            var occupiedHours = reservations
+                .Select(r => r.ReservationDate.ToString("HH:mm")) // Saat kısmını al
+                .Distinct()
+                .ToList();
+
+            return Json(occupiedHours); // JSON olarak döndür
+        }
 
 
 

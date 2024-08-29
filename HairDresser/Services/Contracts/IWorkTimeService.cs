@@ -1,5 +1,6 @@
 ﻿using Entities.Dtos;
 using Entities.Models;
+using Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Services.Contracts
         void UpdateOneWorkTime(WorkTimeDtoForUpdate workTimeDto);
         //WorkTimeDtoForUpdate GetOneWorkTimeForUpdate(int id, bool trackChanges);
         //WorkTime? GetOneWorkTime(int id, bool trackChanges);
+        Task<WorkTimeDto> GetWorkTimeAsync(int id);
+
 
     }
 }

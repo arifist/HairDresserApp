@@ -21,11 +21,12 @@ namespace Services.Contracts
         void UpdateOneReservation(ReservationDtoForUpdate reservationDto);
         void DeleteOneReservation(int id);
         ReservationDtoForUpdate GetOneReservationForUpdate(int id, bool trackChanges);
-
-
 		bool IsReservationSlotAvailable(DateTime reservationDate, string hairCutType);
 
+        IEnumerable<Reservation> GetReservationsByDay(DateTime day, bool trackChanges);
 
 
-	}
+
+
+    }
 }

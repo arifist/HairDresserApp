@@ -30,8 +30,11 @@ namespace Repositories
             return FindByCondition(r => r.ReservationId.Equals(id), trackChanges);
         }
 
-
 		public void UpdateOneReservation(Reservation entity) => Update(entity);
+
+
+
+
     }
 }
 

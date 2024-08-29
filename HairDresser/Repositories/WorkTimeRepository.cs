@@ -21,5 +21,9 @@ namespace Repositories
         //{
         //    return FindByCondition(p => p.WorkTimeId.Equals(id), trackChanges);
         //}
+        public async Task<WorkTime> GetWorkTimeAsync(int id)
+        {
+            return await _context.WorkTimes.FindAsync(id);
+        }
     }
 }

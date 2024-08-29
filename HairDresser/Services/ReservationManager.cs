@@ -86,17 +86,6 @@ namespace Services
             _manager.Save();
         }
 
-
-        //public bool IsReservationSlotAvailable(DateTime reservationDate)
-        //{
-        //	var existingReservation = _manager.Reservation.FindByCondition(
-        //		r => r.ReservationDate == reservationDate,
-        //		trackChanges: false
-        //	);
-
-        //	return existingReservation == null; // Null ise rezervasyon yapılabilir
-        //}
-
         public bool IsReservationSlotAvailable(DateTime reservationDate, string hairCutType)
         {
             // Belirtilen tarihteki rezervasyonu kontrol et
@@ -142,5 +131,16 @@ namespace Services
 
 
 
-    }
+
+        public IEnumerable<Reservation> GetReservationsByDay(DateTime day, bool trackChanges)
+        {
+            var reservations = _manager.Reservation.FindAll(trackChanges)
+                .Where(r => r.ReservationDate.Date == day.Date); // Filtreleme işlemi
+
+            return reservations.ToList(); // Listeye dönüştür
+        }
+
+
+
+}
 }
