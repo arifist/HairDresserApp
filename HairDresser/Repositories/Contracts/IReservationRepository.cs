@@ -16,6 +16,9 @@ namespace Repositories.Contracts
         void DeleteOneReservation(Reservation reservation);
         void UpdateOneReservation(Reservation entity);
 
+        Task<List<Reservation>> GetReservationsByUserIdAsync(string userId);
+
+
 
     }
 }

@@ -1,4 +1,5 @@
 using Entities.Dtos;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
@@ -16,6 +17,7 @@ namespace Services.Contracts
         Task<IdentityResult> DeleteOneUser(string userName);
 
         Task<UserDto> GetUserDtoAsync(ClaimsPrincipal user);
+        Task<List<Reservation>> GetReservationsByUserAsync(ClaimsPrincipal user);
 
     }
 }

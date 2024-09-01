@@ -25,6 +25,7 @@ namespace Services.Contracts
 
         IEnumerable<Reservation> GetReservationsByDay(DateTime day, bool trackChanges);
 
+        Task<List<Reservation>> GetReservationsByUserIdAsync(string userId);
 
 
 

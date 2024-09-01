@@ -18,8 +18,6 @@ namespace Entities.Dtos
         public string ReservationName { get; set; }
         public string? ServiceType { get; init; }
         public DateTime? Date { get; set; } = DateTime.Now;
-        //public DateTime WorkStartTime { get; set; }
-        //public DateTime WorkEndTime { get; set; }
         public string? UserId { get; set; }
         public string? UserName { get; set; }
         public DateTime ReservationDate

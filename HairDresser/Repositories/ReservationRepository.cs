@@ -33,6 +33,18 @@ namespace Repositories
 		public void UpdateOneReservation(Reservation entity) => Update(entity);
 
 
+        public async Task<Reservation> GetByIdAsync(int id)
+        {
+            return await _context.Reservations.FindAsync(id);
+        }
+
+        // Kullanıcı ID'sine göre rezervasyonları getiren metot
+        public async Task<List<Reservation>> GetReservationsByUserIdAsync(string userId)
+        {
+            return await _context.Reservations
+                                 .Where(r => r.UserId == userId)
+                                 .ToListAsync();
+        }
 
 
     }

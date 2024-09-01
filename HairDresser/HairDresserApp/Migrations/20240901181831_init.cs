@@ -49,34 +49,6 @@ namespace HairDresserApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    CustomerId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CustomerName = table.Column<string>(type: "TEXT", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Hairdressers",
-                columns: table => new
-                {
-                    HairDresserId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    HairDresserName = table.Column<string>(type: "TEXT", nullable: false),
-                    Specialty = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hairdressers", x => x.HairDresserId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Reservations",
                 columns: table => new
                 {
@@ -220,47 +192,27 @@ namespace HairDresserApp.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "33fd8425-231a-42dc-a8f1-f43275e82112", "b52a7722-efe7-4e11-9563-76d2fa745c05", "Admin", "ADMIN" });
+                values: new object[] { "1d35191f-be65-484f-bfda-16f16a0f4d4d", "c8a0c2e1-2f7c-4ea9-9c85-f2fd60022936", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b39eb095-43a2-49d5-91d6-620dda304e81", "a820418a-24eb-420c-b128-fdd58da49900", "User", "USER" });
+                values: new object[] { "510a13d4-35e3-4e78-b7bd-986e704f8487", "f081a51f-2154-42a5-b622-9481e0028c66", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "dfeaad42-e58a-42e4-a254-97a209a3e85e", "40a9b81d-2e82-4fc1-b2e5-2b51008be1d8", "Editor", "EDITOR" });
-
-            migrationBuilder.InsertData(
-                table: "Customers",
-                columns: new[] { "CustomerId", "CustomerName", "PhoneNumber" },
-                values: new object[] { 1, "arif", "0545545454" });
-
-            migrationBuilder.InsertData(
-                table: "Customers",
-                columns: new[] { "CustomerId", "CustomerName", "PhoneNumber" },
-                values: new object[] { 2, "deneme", "6465421" });
-
-            migrationBuilder.InsertData(
-                table: "Hairdressers",
-                columns: new[] { "HairDresserId", "HairDresserName", "Specialty" },
-                values: new object[] { 1, "arif", null });
-
-            migrationBuilder.InsertData(
-                table: "Hairdressers",
-                columns: new[] { "HairDresserId", "HairDresserName", "Specialty" },
-                values: new object[] { 2, "deneme", null });
+                values: new object[] { "7e1682fb-3f75-4359-86b3-301ed82aa48f", "2c92ce0a-2650-4090-995a-2f050ec4507b", "Editor", "EDITOR" });
 
             migrationBuilder.InsertData(
                 table: "Reservations",
                 columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName", "UserId", "UserName" },
-                values: new object[] { 1, new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6235), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6254), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "arif", null, null });
+                values: new object[] { 1, new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9075), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9094), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "arif", null, null });
 
             migrationBuilder.InsertData(
                 table: "Reservations",
                 columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName", "UserId", "UserName" },
-                values: new object[] { 2, new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6257), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6258), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mehmet", null, null });
+                values: new object[] { 2, new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9097), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9098), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mehmet", null, null });
 
             migrationBuilder.InsertData(
                 table: "WorkTimes",
@@ -321,12 +273,6 @@ namespace HairDresserApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Hairdressers");
 
             migrationBuilder.DropTable(
                 name: "Reservations");

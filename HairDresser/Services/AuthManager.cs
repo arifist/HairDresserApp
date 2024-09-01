@@ -1,6 +1,9 @@
 using AutoMapper;
 using Entities.Dtos;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Repositories.Contracts;
 using Services.Contracts;
 using System.Security.Claims;
 
@@ -11,13 +14,17 @@ namespace Services
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IMapper _mapper;
+        private readonly IRepositoryManager _manager;
+
         public AuthManager(RoleManager<IdentityRole> roleManager,
         UserManager<IdentityUser> userManager,
+        IRepositoryManager manager,
         IMapper mapper)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _mapper = mapper;
+            _manager=manager;
         }
 
         public IEnumerable<IdentityRole> Roles =>
@@ -96,5 +103,21 @@ namespace Services
             var identityUser = await _userManager.GetUserAsync(user);
             return _mapper.Map<UserDto>(identityUser);
         }
+
+        public async Task<List<Reservation>> GetReservationsByUserAsync(ClaimsPrincipal user)
+        {
+            // Kullanýcýyý al
+            var identityUser = await _userManager.GetUserAsync(user);
+            if (identityUser == null)
+            {
+                throw new Exception("User could not be found.");
+            }
+
+            // Kullanýcý ID'sine göre rezervasyonlarý getir
+            var reservations = await _manager.Reservation.GetReservationsByUserIdAsync(identityUser.Id);
+            return reservations;
+        }
+
+
     }
 }

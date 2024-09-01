@@ -9,8 +9,6 @@ namespace Services.Contracts
     public interface IServiceManager
     {
         IReservationService ReservationService { get; }
-        IHairDresserService HairDresserService { get; }
-        ICustomerService CustomerService { get; }
         IAuthService AuthService { get; }
         IWorkTimeService WorkTimeService { get; }
 

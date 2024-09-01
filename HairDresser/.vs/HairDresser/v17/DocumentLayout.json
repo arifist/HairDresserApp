@@ -1,38 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\",
+  "WorkspaceRootPath": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\hairdresserapp\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|solutionrelative:hairdresserapp\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\hairdresserapp\\views\\reservation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|solutionrelative:hairdresserapp\\views\\reservation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\services\\authmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\authmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\services\\reservationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\reservationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4EC55BE2-4172-438E-9F60-2F753A46C697}|Entities\\Entities.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\entities\\dtos\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4EC55BE2-4172-438E-9F60-2F753A46C697}|Entities\\Entities.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\entities\\dtos\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4EC55BE2-4172-438E-9F60-2F753A46C697}|Entities\\Entities.csproj|solutionrelative:entities\\dtos\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}|Repositories\\Repositories.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\repositories\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}|Repositories\\Repositories.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\repositories\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4EC55BE2-4172-438E-9F60-2F753A46C697}|Entities\\Entities.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\entities\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4EC55BE2-4172-438E-9F60-2F753A46C697}|Entities\\Entities.csproj|solutionrelative:entities\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\hairdresserapp\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|solutionrelative:hairdresserapp\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|c:\\users\\arifk.arif.000\\onedrive\\belgeler\\github\\hairdresserapp\\hairdresser\\services\\contracts\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\contracts\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}|Repositories\\Repositories.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\repositories\\contracts\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BDBFBF3-9DC2-4D59-9CDB-395BF19D81BA}|Repositories\\Repositories.csproj|solutionrelative:repositories\\contracts\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\services\\contracts\\iservicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\contracts\\iservicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,33 +34,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\HairDresserApp\\Views\\Reservation\\Index.cshtml",
-              "RelativeDocumentMoniker": "HairDresserApp\\Views\\Reservation\\Index.cshtml",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\HairDresserApp\\Views\\Reservation\\Index.cshtml",
-              "RelativeToolTip": "HairDresserApp\\Views\\Reservation\\Index.cshtml",
-              "ViewState": "AQIAAJoAAAAAAAAAAAAywLEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-29T06:26:09.19Z",
-              "IsPinned": true
+              "DocumentIndex": 0,
+              "Title": "ReservationDto.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\Dtos\\ReservationDto.cs",
+              "RelativeDocumentMoniker": "Entities\\Dtos\\ReservationDto.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Entities\\Dtos\\ReservationDto.cs",
+              "RelativeToolTip": "Entities\\Dtos\\ReservationDto.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T18:17:31.991Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReservationController.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\HairDresserApp\\Controllers\\ReservationController.cs",
-              "RelativeDocumentMoniker": "HairDresserApp\\Controllers\\ReservationController.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\HairDresserApp\\Controllers\\ReservationController.cs",
-              "RelativeToolTip": "HairDresserApp\\Controllers\\ReservationController.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAA2wFsAAAAjAAAA",
+              "DocumentIndex": 1,
+              "Title": "RepositoryContext.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Repositories\\RepositoryContext.cs",
+              "RelativeDocumentMoniker": "Repositories\\RepositoryContext.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Repositories\\RepositoryContext.cs",
+              "RelativeToolTip": "Repositories\\RepositoryContext.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAA+wBYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T06:26:34.346Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-09-01T18:16:36.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiceExtension.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Infrastructure\\Extensions\\ServiceExtension.cs",
+              "RelativeDocumentMoniker": "HairDresserApp\\Infrastructure\\Extensions\\ServiceExtension.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Infrastructure\\Extensions\\ServiceExtension.cs",
+              "RelativeToolTip": "HairDresserApp\\Infrastructure\\Extensions\\ServiceExtension.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAA7wDwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T18:16:22.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRepositoryManager.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Repositories\\Contracts\\IRepositoryManager.cs",
+              "RelativeDocumentMoniker": "Repositories\\Contracts\\IRepositoryManager.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Repositories\\Contracts\\IRepositoryManager.cs",
+              "RelativeToolTip": "Repositories\\Contracts\\IRepositoryManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T18:15:34.879Z",
               "EditorCaption": ""
             },
             {
@@ -81,75 +98,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuthManager.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Services\\AuthManager.cs",
-              "RelativeDocumentMoniker": "Services\\AuthManager.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Services\\AuthManager.cs",
-              "RelativeToolTip": "Services\\AuthManager.cs",
-              "ViewState": "AQIAAEwAAAAAAAAAAIA7wGAAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T11:33:07.861Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ReservationDto.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Entities\\Dtos\\ReservationDto.cs",
-              "RelativeDocumentMoniker": "Entities\\Dtos\\ReservationDto.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Entities\\Dtos\\ReservationDto.cs",
-              "RelativeToolTip": "Entities\\Dtos\\ReservationDto.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T11:25:54.495Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Reservation.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Entities\\Models\\Reservation.cs",
-              "RelativeDocumentMoniker": "Entities\\Models\\Reservation.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Entities\\Models\\Reservation.cs",
-              "RelativeToolTip": "Entities\\Models\\Reservation.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T11:21:11.354Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "RepositoryContext.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Repositories\\RepositoryContext.cs",
-              "RelativeDocumentMoniker": "Repositories\\RepositoryContext.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Repositories\\RepositoryContext.cs",
-              "RelativeToolTip": "Repositories\\RepositoryContext.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAA8wBYAAAAJAAAA",
+              "Title": "IServiceManager.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\Contracts\\IServiceManager.cs",
+              "RelativeDocumentMoniker": "Services\\Contracts\\IServiceManager.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\Contracts\\IServiceManager.cs",
+              "RelativeToolTip": "Services\\Contracts\\IServiceManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T11:20:12.074Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Services\\Contracts\\IReservationService.cs",
-              "RelativeDocumentMoniker": "Services\\Contracts\\IReservationService.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Services\\Contracts\\IReservationService.cs",
-              "RelativeToolTip": "Services\\Contracts\\IReservationService.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAuwBkAAABXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T06:33:26.225Z"
+              "WhenOpened": "2024-09-01T17:58:26.706Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ReservationManager.cs",
-              "DocumentMoniker": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Services\\ReservationManager.cs",
-              "RelativeDocumentMoniker": "Services\\ReservationManager.cs",
-              "ToolTip": "C:\\Users\\arifk.ARIF.000\\OneDrive\\Belgeler\\GitHub\\HairDresserApp\\HairDresser\\Services\\ReservationManager.cs",
-              "RelativeToolTip": "Services\\ReservationManager.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAywDYAAAAAAAAA",
+              "Title": "ServiceManager.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\ServiceManager.cs",
+              "RelativeDocumentMoniker": "Services\\ServiceManager.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\ServiceManager.cs",
+              "RelativeToolTip": "Services\\ServiceManager.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAiwBIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T06:31:23.073Z"
+              "WhenOpened": "2024-09-01T17:59:32.784Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -182,6 +182,9 @@
             if (result.success) {
                 notification.className = 'notification success'; // Başarı durumu
                 notification.textContent = result.message;
+                setTimeout(() => {
+                    window.location.href = "/user";
+                }, 1400);
             } else {
                 notification.className = 'notification error'; // Hata durumu
                 notification.textContent = result.message;

@@ -1,17 +1,35 @@
-﻿@model UserDto
+﻿@model List<Reservation>
 
-<h2>Profile</h2>
-<table class="table">
-    <tr>
-        <th>Id</th>
-        <td>@Model.Id</td>
-    </tr>
-    <tr>
-        <th>UserName</th>
-        <td>@Model.UserName</td>
-    </tr>
-    <tr>
-        <th>Email</th>
-        <td>@Model.Email</td>
-    </tr>
-</table>
+<h2>User Reservations</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Rezervasyon Tarihi</th>
+                <th>Rezervasyon Türü</th>
+                <th>Açıklama</th>
+                <!-- Diğer alanlar burada -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservation in Model)
+            {
+                <tr>
+                    <td>@reservation.UserName</td>
+                    <td>@reservation.ReservationDate.ToString()</td>
+                    <td>@reservation.HairCutTypes</td>
+                    <td>@reservation.ReservationMessage</td>
+
+                    <!-- Diğer alanlar burada -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No reservations found.</p>
+}

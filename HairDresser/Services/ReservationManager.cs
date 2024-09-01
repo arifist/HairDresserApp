@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Dtos;
 using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
@@ -159,7 +160,10 @@ namespace Services
             return reservations.ToList(); // Listeye dönüştür
         }
 
+        public async Task<List<Reservation>> GetReservationsByUserIdAsync(string userId)
+        {
+            return await _manager.Reservation.GetReservationsByUserIdAsync(userId);
+        }
 
-
-}
+    }
 }

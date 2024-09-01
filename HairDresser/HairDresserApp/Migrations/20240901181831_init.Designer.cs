@@ -11,75 +11,13 @@ using Repositories;
 namespace HairDresserApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240829112822_init")]
+    [Migration("20240901181831_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
-
-            modelBuilder.Entity("Entities.Models.Customer", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CustomerId");
-
-                    b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            CustomerId = 1,
-                            CustomerName = "arif",
-                            PhoneNumber = "0545545454"
-                        },
-                        new
-                        {
-                            CustomerId = 2,
-                            CustomerName = "deneme",
-                            PhoneNumber = "6465421"
-                        });
-                });
-
-            modelBuilder.Entity("Entities.Models.HairDresser", b =>
-                {
-                    b.Property<int>("HairDresserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("HairDresserName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Specialty")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("HairDresserId");
-
-                    b.ToTable("Hairdressers");
-
-                    b.HasData(
-                        new
-                        {
-                            HairDresserId = 1,
-                            HairDresserName = "arif"
-                        },
-                        new
-                        {
-                            HairDresserId = 2,
-                            HairDresserName = "deneme"
-                        });
-                });
 
             modelBuilder.Entity("Entities.Models.Reservation", b =>
                 {
@@ -124,20 +62,20 @@ namespace HairDresserApp.Migrations
                         new
                         {
                             ReservationId = 1,
-                            Date = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6235),
+                            Date = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9075),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6254),
+                            ReservationDay = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9094),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "arif"
                         },
                         new
                         {
                             ReservationId = 2,
-                            Date = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6257),
+                            Date = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9097),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 8, 29, 14, 28, 22, 354, DateTimeKind.Local).AddTicks(6258),
+                            ReservationDay = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9098),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "mehmet"
                         });
@@ -196,22 +134,22 @@ namespace HairDresserApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b39eb095-43a2-49d5-91d6-620dda304e81",
-                            ConcurrencyStamp = "a820418a-24eb-420c-b128-fdd58da49900",
+                            Id = "1d35191f-be65-484f-bfda-16f16a0f4d4d",
+                            ConcurrencyStamp = "c8a0c2e1-2f7c-4ea9-9c85-f2fd60022936",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "dfeaad42-e58a-42e4-a254-97a209a3e85e",
-                            ConcurrencyStamp = "40a9b81d-2e82-4fc1-b2e5-2b51008be1d8",
+                            Id = "7e1682fb-3f75-4359-86b3-301ed82aa48f",
+                            ConcurrencyStamp = "2c92ce0a-2650-4090-995a-2f050ec4507b",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "33fd8425-231a-42dc-a8f1-f43275e82112",
-                            ConcurrencyStamp = "b52a7722-efe7-4e11-9563-76d2fa745c05",
+                            Id = "510a13d4-35e3-4e78-b7bd-986e704f8487",
+                            ConcurrencyStamp = "f081a51f-2154-42a5-b622-9481e0028c66",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

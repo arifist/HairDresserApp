@@ -8,8 +8,7 @@ namespace Repositories.Contracts
 {
     public interface IRepositoryManager
     {
-        ICustomerRepository Customer { get; }
-        IHairDresserRepository HairDresser { get; }
+
         IReservationRepository Reservation { get; }
         IWorkTimeRepository WorkTime { get; }
         void Save();

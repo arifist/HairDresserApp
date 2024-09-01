@@ -13,8 +13,7 @@ namespace Repositories
 {
     public class RepositoryContext : IdentityDbContext<IdentityUser>
     {
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<HairDresser> Hairdressers { get; set; }
+
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<WorkTime> WorkTimes { get; set; }
 
