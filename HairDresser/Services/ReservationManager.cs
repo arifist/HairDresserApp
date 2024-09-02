@@ -174,8 +174,11 @@ namespace Services
 
         public async Task DeletePastReservationsAsync()
         {
+            var thresholdDate = DateTime.UtcNow.AddDays(-1);
+            var pastReservations = await _manager.Reservation.GetPastReservationsAsync(thresholdDate);
+
             // Geçmiş rezervasyonları tespit et, örneğin bugünden önceki tüm rezervasyonlar
-            var pastReservations = await _manager.Reservation.GetPastReservationsAsync(DateTime.Now);
+            //var pastReservations = await _manager.Reservation.GetPastReservationsAsync(DateTime.Now);
 
             // Eğer silinecek rezervasyon yoksa işlemi sonlandır
             if (pastReservations == null || pastReservations.Count == 0)

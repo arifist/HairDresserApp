@@ -27,8 +27,8 @@ namespace Services
                 {
                     await DeletePastReservationsAsync();
                     // Burada bekleme süresini belirliyoruz, örneğin her 24 saatte bir çalışması için:
-                    await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
-                    //await Task.Delay(TimeSpan.FromMinutes(2), stoppingToken);
+                    //await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
+                    await Task.Delay(TimeSpan.FromMinutes(2), stoppingToken);
 
                 }
                 catch (Exception ex)
@@ -39,7 +39,7 @@ namespace Services
             }
         }
 
-        // Randevuları silen asenkron metod
+
         private async Task DeletePastReservationsAsync()
         {
             using (var scope = _scopeFactory.CreateScope())
@@ -48,6 +48,7 @@ namespace Services
                 await reservationService.DeletePastReservationsAsync(); // Asenkron silme işlemi
             }
         }
+
     }
 }
 
