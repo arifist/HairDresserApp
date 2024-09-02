@@ -63,6 +63,7 @@ namespace HairDresserApp.Infrastructure.Extensions
             services.AddScoped<IReservationService, ReservationManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IWorkTimeService, WorkTimeManager>();
+            services.AddScoped<IDeletePastReservationsService, DeletePastReservationsService>();
 
         }
 

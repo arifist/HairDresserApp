@@ -46,6 +46,21 @@ namespace Repositories
                                  .ToListAsync();
         }
 
+        public async Task<List<Reservation>> GetPastReservationsAsync(DateTime date)
+        {
+            // Geçmiş rezervasyonları sorgula
+            return await _context.Reservations
+                                 .Where(r => r.ReservationDate < date)
+                                 .ToListAsync();
+        }
+
+        public async Task DeleteReservationsAsync(List<Reservation> reservations)
+        {
+            // Rezervasyonları sil
+            _context.Reservations.RemoveRange(reservations);
+            await _context.SaveChangesAsync();
+        }
+
 
     }
 }

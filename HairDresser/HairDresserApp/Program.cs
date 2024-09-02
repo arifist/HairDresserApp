@@ -5,6 +5,7 @@ using Services.Contracts;
 using HairDresserApp.Infrastructure.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.ConfigureRepositoryRegistration();
 builder.Services.ConfigureServiceRegistration();
 builder.Services.ConfigureRouting();
 builder.Services.ConfigureApplicationCookie();
+builder.Services.AddHostedService<DeletePastReservationsService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

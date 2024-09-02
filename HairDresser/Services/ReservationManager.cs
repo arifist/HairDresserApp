@@ -29,13 +29,6 @@ namespace Services
 
 
 
-        //public void CreateReservation(ReservationDtoForInsertion reservationDto)
-        //      {
-        //          Reservation reservation = _mapper.Map<Reservation>(reservationDto);
-        //          _manager.Reservation.Create(reservation);
-        //          _manager.Save();
-        //      }
-
 
         public void CreateReservation(ReservationDtoForInsertion reservationDto)
         {
@@ -163,6 +156,36 @@ namespace Services
         public async Task<List<Reservation>> GetReservationsByUserIdAsync(string userId)
         {
             return await _manager.Reservation.GetReservationsByUserIdAsync(userId);
+        }
+
+        public void DeletePastReservations()
+        {
+            var pastReservations = _manager.Reservation
+                .FindAll(false)
+                .Where(r => r.ReservationDate < DateTime.Now)
+                .ToList();
+
+            foreach (var reservation in pastReservations)
+            {
+                _manager.Reservation.DeleteOneReservation(reservation);
+            }
+            _manager.Save();
+        }
+
+        public async Task DeletePastReservationsAsync()
+        {
+            // Geçmiş rezervasyonları tespit et, örneğin bugünden önceki tüm rezervasyonlar
+            var pastReservations = await _manager.Reservation.GetPastReservationsAsync(DateTime.Now);
+
+            // Eğer silinecek rezervasyon yoksa işlemi sonlandır
+            if (pastReservations == null || pastReservations.Count == 0)
+            {
+                // Silinecek kayıt yok, loglama yapabilir veya direkt return edebilirsin.
+                return;
+            }
+
+            // Bulunan geçmiş rezervasyonları sil
+            await _manager.Reservation.DeleteReservationsAsync(pastReservations);
         }
 
     }

@@ -18,6 +18,8 @@ namespace Repositories.Contracts
 
         Task<List<Reservation>> GetReservationsByUserIdAsync(string userId);
 
+        Task<List<Reservation>> GetPastReservationsAsync(DateTime date);
+        Task DeleteReservationsAsync(List<Reservation> reservations);
 
 
     }

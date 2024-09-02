@@ -11,6 +11,6 @@ namespace Services.Contracts
         IReservationService ReservationService { get; }
         IAuthService AuthService { get; }
         IWorkTimeService WorkTimeService { get; }
-
+        IDeletePastReservationsService DeletePastReservationsService { get; }
     }
 }
