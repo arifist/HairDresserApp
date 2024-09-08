@@ -27,6 +27,7 @@ namespace Services.Contracts
 
         Task DeletePastReservationsAsync();
 
+        Task<bool> DeleteOneReservationByIdAsync(int reservationId);
 
 
     }

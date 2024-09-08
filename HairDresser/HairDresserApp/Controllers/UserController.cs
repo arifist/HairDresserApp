@@ -34,5 +34,29 @@ namespace HairDresserApp.Controllers
                 return View("Error");
             }
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteReservation(int reservationId)
+        {
+            try
+            {
+                // Silme işlemini gerçekleştir
+                bool result = await _manager.ReservationService.DeleteOneReservationByIdAsync(reservationId);
+                if (!result)
+                {
+                    // Hata mesajı, rezervasyon bulunamadı
+                    TempData["Error"] = "Rezervasyon bulunamadı veya silinemedi.";
+                    return RedirectToAction("Index");
+                }
+
+                TempData["Success"] = "Rezervasyon başarıyla silindi.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda error sayfası
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+        }
     }
 }

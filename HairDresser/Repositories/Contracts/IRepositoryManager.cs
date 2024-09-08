@@ -12,6 +12,7 @@ namespace Repositories.Contracts
         IReservationRepository Reservation { get; }
         IWorkTimeRepository WorkTime { get; }
         void Save();
+        Task SaveAsync();
 
     }
 }

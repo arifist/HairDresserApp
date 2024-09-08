@@ -6,6 +6,11 @@ using HairDresserApp.Infrastructure.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Hosting;
+using HairDresserApp.Infrastructure.Settings;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,24 +27,26 @@ builder.Services.ConfigureServiceRegistration();
 builder.Services.ConfigureRouting();
 builder.Services.ConfigureApplicationCookie();
 builder.Services.AddHostedService<DeletePastReservationsService>();
-
 builder.Services.AddAutoMapper(typeof(Program));
 
-var app = builder.Build();
+builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("TwilioSettings"));
+builder.Services.AddScoped<ISMSSenderService,SMSSenderService>();
+// ConfigureServices metodu
 
+
+
+
+var app = builder.Build();
 app.UseStaticFiles();
 app.UseSession();
-
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapAreaControllerRoute(
-        name: "Admin",
+    name: "Admin",
         areaName: "Admin",
         pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
     );

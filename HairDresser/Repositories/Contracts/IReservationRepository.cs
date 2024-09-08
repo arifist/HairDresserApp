@@ -21,6 +21,7 @@ namespace Repositories.Contracts
         Task<List<Reservation>> GetPastReservationsAsync(DateTime date);
         Task DeleteReservationsAsync(List<Reservation> reservations);
 
+        Task<Reservation?> GetOneReservationAsync(int id, bool trackChanges);
 
     }
 }

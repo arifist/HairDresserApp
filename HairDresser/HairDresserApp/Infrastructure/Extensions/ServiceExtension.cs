@@ -1,11 +1,15 @@
+using Entities.Dtos;
 using Entities.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
 using Services;
 using Services.Contracts;
+
 
 namespace HairDresserApp.Infrastructure.Extensions
 {
@@ -33,9 +37,17 @@ namespace HairDresserApp.Infrastructure.Extensions
                 options.Password.RequireLowercase = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 6;
+
+                // Ýki faktörlü doðrulama için SMS token saðlayýcýsýný kullanma
+                options.Tokens.ProviderMap.Add("Phone", new TokenProviderDescriptor(typeof(Microsoft.AspNetCore.Identity.PhoneNumberTokenProvider<IdentityUser>)));
             })
-            .AddEntityFrameworkStores<RepositoryContext>();
+            .AddEntityFrameworkStores<RepositoryContext>()
+            .AddDefaultTokenProviders(); // Varsayýlan token saðlayýcýlarý ekler
+
+            // SMS doðrulama saðlayýcýsýný kaydedin
+            services.AddTransient<IUserTwoFactorTokenProvider<IdentityUser>, Microsoft.AspNetCore.Identity.PhoneNumberTokenProvider<IdentityUser>>();
         }
+
 
         public static void ConfigureSession(this IServiceCollection services)
         {
@@ -64,6 +76,7 @@ namespace HairDresserApp.Infrastructure.Extensions
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IWorkTimeService, WorkTimeManager>();
             services.AddScoped<IDeletePastReservationsService, DeletePastReservationsService>();
+            services.AddScoped<ISMSSenderService, SMSSenderService>();
 
         }
 

@@ -78,6 +78,20 @@ namespace HairDresserApp.Controllers
                 .Distinct()
                 .ToList();
 
+            foreach (var reservation in reservations)
+            {
+                if (reservation.HairCutTypes == "Saç ve Sakal")
+                {
+                    var reservationTime = reservation.ReservationDate;
+                    var nextHour = reservationTime.AddMinutes(30).ToString("HH:mm");
+
+                    if (!occupiedHours.Contains(nextHour))
+                    {
+                        occupiedHours.Add(nextHour);
+                    }
+                }
+            }
+
             return Json(occupiedHours); // JSON olarak döndür
         }
 

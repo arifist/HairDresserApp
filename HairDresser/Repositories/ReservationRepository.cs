@@ -61,7 +61,14 @@ namespace Repositories
             await _context.SaveChangesAsync();
         }
 
-
+        public async Task<Reservation?> GetOneReservationAsync(int id, bool trackChanges)
+        {
+            // trackChanges parametresine göre tracking işlemi ayarlanıyor
+            return await _context.Reservations
+                .Where(r => r.ReservationId == id)
+                .AsTracking(trackChanges ? QueryTrackingBehavior.TrackAll : QueryTrackingBehavior.NoTracking)
+                .SingleOrDefaultAsync();
+        }
     }
 }
 

@@ -60,20 +60,20 @@ namespace HairDresserApp.Migrations
                         new
                         {
                             ReservationId = 1,
-                            Date = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9075),
+                            Date = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3570),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9094),
+                            ReservationDay = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3592),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "arif"
                         },
                         new
                         {
                             ReservationId = 2,
-                            Date = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9097),
+                            Date = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3595),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 9, 1, 21, 18, 31, 162, DateTimeKind.Local).AddTicks(9098),
+                            ReservationDay = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3596),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "mehmet"
                         });
@@ -132,22 +132,22 @@ namespace HairDresserApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1d35191f-be65-484f-bfda-16f16a0f4d4d",
-                            ConcurrencyStamp = "c8a0c2e1-2f7c-4ea9-9c85-f2fd60022936",
+                            Id = "732237cd-2fef-4313-a64e-4215cccca136",
+                            ConcurrencyStamp = "654724e1-a550-461f-b393-ee8f3f7581de",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "7e1682fb-3f75-4359-86b3-301ed82aa48f",
-                            ConcurrencyStamp = "2c92ce0a-2650-4090-995a-2f050ec4507b",
+                            Id = "d52718db-4356-4d68-8745-60e73cf9170b",
+                            ConcurrencyStamp = "74670e53-070e-4671-95da-a13871dae7f7",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "510a13d4-35e3-4e78-b7bd-986e704f8487",
-                            ConcurrencyStamp = "f081a51f-2154-42a5-b622-9481e0028c66",
+                            Id = "35921a80-0f76-45f0-b8b6-59f864c0eb55",
+                            ConcurrencyStamp = "10f4aa4a-3f16-465e-8a74-b3d291fa0404",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

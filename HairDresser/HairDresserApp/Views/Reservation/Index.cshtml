@@ -63,6 +63,9 @@
         <input asp-for="ReservationDay" class="form-control" id="reservationDay" placeholder="Tarih seçin" />
     </div>
 
+    <div id="noAvailableSlots" class="notification error" style="display: none;">
+        Bugünün randevu saatleri tamamen dolmuştur. Lütfen başka bir gün seçiniz.
+    </div>
     <div class="form-group my-3">
         <label asp-for="ReservationHour"></label>
         <select asp-for="ReservationHour" class="form-control" id="reservationHour">
@@ -93,15 +96,22 @@
     document.addEventListener('DOMContentLoaded', function () {
         function updateFlatpickr() {
             const haircutType = document.querySelector('input[name="HairCutTypes"]:checked')?.value;
-            let minuteIncrement = 30; // Varsayılan 30 dakika
+            let minuteIncrement = 30; // Her zaman 30 dakika aralık
 
-            if (haircutType === "Saç ve Sakal") {
-                minuteIncrement = 60; // Saç ve Sakal seçilirse 60 dakika
-            }
+            const today = new Date();
+            const maxDate = new Date(today);
+            maxDate.setDate(today.getDate() + 7); // Bugünden 7 gün sonrasını hesapla
 
             flatpickr("#reservationDay", {
                 dateFormat: "Y-m-d",
                 locale: "tr",
+                minDate: "today", // Bugünden geçmiş günleri gizle
+                maxDate: maxDate, // 7 gün sonrası için sınır
+                disable: [
+                    function (date) {
+                        return date.getDay() === 0; // Pazar günlerini seçilemez yap
+                    }
+                ],
                 onChange: function (selectedDates, dateStr, instance) {
                     fetchOccupiedHours(dateStr); // Tarih değiştiğinde dolu saatleri getir
                 }
@@ -143,14 +153,21 @@
         function updateHourOptions(occupiedHours) {
             const hourSelect = document.getElementById('reservationHour');
             const options = hourSelect.querySelectorAll('option');
+            let hasAvailableSlot = false;
 
             options.forEach(option => {
+                // Eğer dolu saatler arasında seçeneğin değeri varsa, onu gizle
                 if (occupiedHours.includes(option.value)) {
                     option.style.display = 'none'; // Dolu saatleri gizle
                 } else {
                     option.style.display = ''; // Diğer saatleri göster
+                    hasAvailableSlot = true; // En az bir uygun saat var
                 }
             });
+
+            // Uygun saat var mı kontrolü
+            const noAvailableSlots = document.getElementById('noAvailableSlots');
+            noAvailableSlots.style.display = hasAvailableSlot ? 'none' : 'block'; // Uygun saat yoksa mesajı göster
         }
 
         // İlk başlatma
@@ -173,7 +190,7 @@
                 body: formData,
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
-                }
+                }""
             });
 
             // Yanıtı işleme
@@ -192,5 +209,4 @@
             notification.style.display = 'block'; // Bildirimi göster
         });
     });
-
 </script>

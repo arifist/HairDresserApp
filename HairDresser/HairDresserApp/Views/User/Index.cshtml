@@ -22,8 +22,12 @@
                     <td>@reservation.ReservationDate.ToString()</td>
                     <td>@reservation.HairCutTypes</td>
                     <td>@reservation.ReservationMessage</td>
-
-                    <!-- Diğer alanlar burada -->
+                    <td>
+                        <form asp-action="DeleteReservation" method="post">
+                            <input type="hidden" name="reservationId" value="@reservation.ReservationId" />
+                            <button type="submit" class="btn btn-danger">Randevuyu Sil</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

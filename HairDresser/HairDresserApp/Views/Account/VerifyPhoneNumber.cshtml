@@ -1,0 +1,21 @@
+﻿@{
+    // TempData'dan deneme hakkını al, varsa
+    var attemptsLeft = TempData["AttemptsLeft"] as int? ?? 3;
+}
+
+<div class="container">
+    <h2>Verify Your Phone Number</h2>
+
+    <!-- Deneme Hakkı Bildirimi -->
+    <div class="alert alert-info">
+        Deneme Hakkı: @attemptsLeft
+    </div>
+
+    <form method="post" asp-action="VerifyPhoneNumber">
+        <div class="form-group">
+            <label for="verificationCode">Verification Code</label>
+            <input type="text" name="verificationCode" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+</div>

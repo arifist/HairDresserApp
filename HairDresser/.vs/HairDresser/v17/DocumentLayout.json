@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\services\\reservationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\reservationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\hairdresserapp\\views\\account\\verifyphonenumber.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|solutionrelative:hairdresserapp\\views\\account\\verifyphonenumber.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\services\\deletepastreservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6E72268-9F92-4CBE-A05E-AECB8B84BF25}|Services\\Services.csproj|solutionrelative:services\\deletepastreservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\hairdresserapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|solutionrelative:hairdresserapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|d:\\yazilim\\c#\\hairdresser_eski\\hairdresser\\hairdresserapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3874523-1E0F-4EF0-AB3B-BFEE53B05115}|HairDresserApp\\HairDresserApp.csproj|solutionrelative:hairdresserapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,41 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DeletePastReservationsService.cs",
-              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\DeletePastReservationsService.cs",
-              "RelativeDocumentMoniker": "Services\\DeletePastReservationsService.cs",
-              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\DeletePastReservationsService.cs",
-              "RelativeToolTip": "Services\\DeletePastReservationsService.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAA1wC8AAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T06:50:19.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Program.cs",
-              "RelativeDocumentMoniker": "HairDresserApp\\Program.cs",
-              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Program.cs",
-              "RelativeToolTip": "HairDresserApp\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T06:04:00.304Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ReservationManager.cs",
-              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\ReservationManager.cs",
-              "RelativeDocumentMoniker": "Services\\ReservationManager.cs",
-              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\Services\\ReservationManager.cs",
-              "RelativeToolTip": "Services\\ReservationManager.cs",
-              "ViewState": "AQIAAKIAAAAAAAAAAAAnwLUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T05:59:19.315Z",
+              "Title": "VerifyPhoneNumber.cshtml",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Views\\Account\\VerifyPhoneNumber.cshtml",
+              "RelativeDocumentMoniker": "HairDresserApp\\Views\\Account\\VerifyPhoneNumber.cshtml",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Views\\Account\\VerifyPhoneNumber.cshtml",
+              "RelativeToolTip": "HairDresserApp\\Views\\Account\\VerifyPhoneNumber.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-08T06:55:02.36Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "HairDresserApp\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\yazilim\\c#\\HairDresser_eski\\HairDresser\\HairDresserApp\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "HairDresserApp\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAKsAAAAAAAAAAAA0wL8AAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T06:41:11.215Z"
             }
           ]
         }

@@ -191,5 +191,22 @@ namespace Services
             await _manager.Reservation.DeleteReservationsAsync(pastReservations);
         }
 
+
+        public async Task<bool> DeleteOneReservationByIdAsync(int reservationId)
+        {
+            // ID ile rezervasyonu çekiyoruz
+            var reservation = await _manager.Reservation.GetOneReservationAsync(reservationId, trackChanges: false);
+
+            // Rezervasyon bulunmazsa false döndürülüyor
+            if (reservation == null)
+                return false;
+
+            // Rezervasyonu sil ve değişiklikleri kaydet
+            _manager.Reservation.DeleteOneReservation(reservation);
+            await _manager.SaveAsync();
+
+            // Başarılı bir şekilde silindi
+            return true;
+        }
     }
 }

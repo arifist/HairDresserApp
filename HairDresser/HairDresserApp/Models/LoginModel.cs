@@ -11,14 +11,11 @@ namespace HairDresserApp.Models
         [Required(ErrorMessage = "Password is required.")]
         public string? Password { get; set; }
 
-        public string ReturnUrl
+        public string? ReturnUrl
         {
             get
             {
-                if(_returnurl is null)
-                    return "/";
-                else
-                    return _returnurl;
+                return _returnurl ?? "/";
             }
             set
             {
