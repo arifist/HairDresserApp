@@ -11,7 +11,7 @@ using Entities.Models;
 
 namespace Repositories
 {
-    public class RepositoryContext : IdentityDbContext<IdentityUser>
+    public class RepositoryContext : IdentityDbContext<AppUser>
     {
 
         public DbSet<Reservation> Reservations { get; set; }
@@ -27,6 +27,9 @@ namespace Repositories
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<AppUser>()
+                .HasIndex(u => u.UserName)
+                .IsUnique(false);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

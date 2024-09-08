@@ -1,4 +1,5 @@
 using Entities.Dtos;
+using Entities.Models;
 using HairDresserApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,12 @@ namespace HairDresserApp.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly ISMSSenderService _smsSenderService;
 
-        public AccountController(UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager,
+        public AccountController(UserManager<AppUser> userManager,
+        SignInManager<AppUser> signInManager,
         ISMSSenderService smsSenderService) // SMS servisini ekleyin
 
         {
@@ -33,13 +34,36 @@ namespace HairDresserApp.Controllers
         }
 
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Login([FromForm] LoginModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        AppUser user = await _userManager.FindByNameAsync(model.Name);
+        //        if (user is not null)
+        //        {
+        //            await _signInManager.SignOutAsync();
+        //            if ((await _signInManager.PasswordSignInAsync(user, model.Password, false, false)).Succeeded)
+        //            {
+        //                return Redirect(model?.ReturnUrl ?? "/");
+        //            }
+        //        }
+        //        ModelState.AddModelError("Error", "Invalid username or password.");
+        //    }
+        //    return View();
+        //}
+
+
+        // AccountController.cs
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromForm] LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await _userManager.FindByNameAsync(model.Name);
+                // Email adresine göre kullanýcýyý buluyoruz
+                AppUser user = await _userManager.FindByEmailAsync(model.Email);
                 if (user is not null)
                 {
                     await _signInManager.SignOutAsync();
@@ -48,10 +72,14 @@ namespace HairDresserApp.Controllers
                         return Redirect(model?.ReturnUrl ?? "/");
                     }
                 }
-                ModelState.AddModelError("Error", "Invalid username or password.");
+                ModelState.AddModelError("Error", "Invalid email or password.");
             }
-            return View();
+            return View(model);
         }
+
+
+
+
 
         public async Task<IActionResult> Logout([FromQuery(Name = "ReturnUrl")] string ReturnUrl = "/")
         {
@@ -66,6 +94,10 @@ namespace HairDresserApp.Controllers
         }
 
 
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromForm] RegisterDto model)
@@ -73,12 +105,40 @@ namespace HairDresserApp.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            // Kullanýcýnýn mevcut olup olmadýðýný kontrol et
+            var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            if (existingUser != null)
+            {
+                // Kullanýcý zaten varsa hata mesajý göster
+                ModelState.AddModelError("", "Bu e-posta zaten kayýtlý. Lütfen farklý bir e-posta deneyin.");
+                return View(model); // Kullanýcýyý VerifyPhoneNumber sayfasýna yönlendirmeden formu tekrar göster
+            }
+
+            // Kullanýcý adýnýn benzersizliðini kontrol et
+            var existingUserByUserName = await _userManager.FindByNameAsync(model.UserName);
+            if (existingUserByUserName != null)
+            {
+                // Kullanýcý adý zaten kayýtlýysa hata mesajý göster
+                ModelState.AddModelError("", "Bu kullanýcý adý zaten alýnmýþ. Lütfen farklý bir kullanýcý adý deneyin.");
+                return View(model);
+            }
+
+            // Þifre kriterlerine uygun olup olmadýðýný kontrol et
+            var passwordValidationResult = ValidatePassword(model.Password);
+            if (!passwordValidationResult.IsValid)
+            {
+                ModelState.AddModelError("Password", passwordValidationResult.ErrorMessage);
+                return View(model); // Þifre uygun deðilse formu tekrar göster
+            }
+
             // Kullanýcýyý geçici olarak oluþtur (veritabanýna kaydetme)
-            var user = new IdentityUser
+            var user = new AppUser
             {
                 UserName = model.UserName,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
+                FullName = model.FullName // Tam ad bilgisini burada ekliyoruz
+
             };
 
             // SMS doðrulama kodu oluþtur ve gönder
@@ -102,6 +162,39 @@ namespace HairDresserApp.Controllers
             }
         }
 
+        private (bool IsValid, string ErrorMessage) ValidatePassword(string password)
+        {
+            const int minLength = 6;
+
+            if (password.Length < minLength)
+            {
+                return (false, $"Þifre en az {minLength} karakter uzunluðunda olmalýdýr.");
+            }
+
+            if (!password.Any(char.IsUpper))
+            {
+                return (false, "Þifre en az bir büyük harf içermelidir.");
+            }
+
+            if (!password.Any(char.IsLower))
+            {
+                return (false, "Þifre en az bir küçük harf içermelidir.");
+            }
+
+            if (!password.Any(char.IsDigit))
+            {
+                return (false, "Þifre en az bir rakam içermelidir.");
+            }
+
+            return (true, string.Empty); // Þifre kriterlerine uygun
+        }
+
+
+
+
+
+
+
 
         public IActionResult VerifyPhoneNumber()
         {
@@ -114,121 +207,46 @@ namespace HairDresserApp.Controllers
 
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> VerifyPhoneNumber(string verificationCode)
-        //{
-        //    // Geçici kullanýcý verisini ve token'ý al
-        //    var tempUserData = TempData["TempUser"] as string;
-        //    var originalToken = TempData["Token"] as string;
-
-        //    // TempData'nýn süresi dolmuþsa veya doðru þekilde alýnamamýþsa hata göster
-        //    if (tempUserData == null || originalToken == null)
-        //    {
-        //        ModelState.AddModelError("", "Invalid verification process.");
-        //        return View();
-        //    }
-
-        //    // Kullanýcý bilgilerini deserialize et
-        //    var model = JsonConvert.DeserializeObject<RegisterDto>(tempUserData);
-        //    var user = new IdentityUser
-        //    {
-        //        UserName = model.UserName,
-        //        Email = model.Email,
-        //        PhoneNumber = model.PhoneNumber,
-        //    };
-
-        //    // Girilen doðrulama kodunu oluþturulmuþ token ile karþýlaþtýr
-        //    var isValid = string.Equals(originalToken, verificationCode, StringComparison.Ordinal);
-
-        //    if (isValid)
-        //    {
-        //        // Kullanýcýyý veritabanýna kaydet
-        //        var createResult = await _userManager.CreateAsync(user, model.Password);
-        //        if (createResult.Succeeded)
-        //        {
-        //            // Kullanýcýyý "User" rolüne ekle
-        //            await _userManager.AddToRoleAsync(user, "User");
-
-        //            // Telefon numarasýný doðrula
-        //            user.PhoneNumberConfirmed = true;
-        //            await _userManager.UpdateAsync(user);
-
-        //            // Baþarýlý kayýt sonrasý giriþ sayfasýna yönlendir
-        //            return RedirectToAction("Login");
-        //        }
-        //        else
-        //        {
-        //            // Kullanýcý oluþturulurken oluþan hatalarý göster
-        //            foreach (var err in createResult.Errors)
-        //            {
-        //                ModelState.AddModelError("", err.Description);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // Yanlýþ doðrulama kodu girildiðinde hata mesajý göster ve TempData'yý sakla
-        //        ModelState.AddModelError("", "Yanlýþ doðrulama kodu girdiniz. Lütfen tekrar deneyin.");
-
-        //        // TempData içeriðini koru ve sakla
-        //        TempData["TempUser"] = tempUserData;
-        //        TempData["Token"] = originalToken;
-        //        TempData.Keep();
-        //    }
-
-        //    // Kullanýcý kaydý baþarýsýz olduðunda geri dönüþ
-        //    return View();
-        //}
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyPhoneNumber(string verificationCode)
         {
-            // Geçici kullanýcý verisini ve token'ý al
             var tempUserData = TempData["TempUser"] as string;
             var originalToken = TempData["Token"] as string;
-            var attemptsLeft = TempData["AttemptsLeft"] as int? ?? 3; // Varsayýlan olarak 3 kullan
+            var attemptsLeft = TempData["AttemptsLeft"] as int? ?? 3;
 
-            // TempData'nýn süresi dolmuþsa veya doðru þekilde alýnamamýþsa hata göster
             if (tempUserData == null || originalToken == null)
             {
                 ModelState.AddModelError("", "Invalid verification process.");
                 return View();
             }
 
-            // Kullanýcý bilgilerini deserialize et
             var model = JsonConvert.DeserializeObject<RegisterDto>(tempUserData);
-            var user = new IdentityUser
+            var user = new AppUser
             {
                 UserName = model.UserName,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
+                FullName=model.FullName
+
             };
 
-            // Girilen doðrulama kodunu oluþturulmuþ token ile karþýlaþtýr
             var isValid = string.Equals(originalToken, verificationCode, StringComparison.Ordinal);
 
             if (isValid)
             {
-                // Kullanýcýyý veritabanýna kaydet
                 var createResult = await _userManager.CreateAsync(user, model.Password);
                 if (createResult.Succeeded)
                 {
-                    // Kullanýcýyý "User" rolüne ekle
                     await _userManager.AddToRoleAsync(user, "User");
-
-                    // Telefon numarasýný doðrula
                     user.PhoneNumberConfirmed = true;
                     await _userManager.UpdateAsync(user);
 
-                    // Baþarýlý kayýt sonrasý giriþ sayfasýna yönlendir
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    // Kullanýcý oluþturulurken oluþan hatalarý göster
                     foreach (var err in createResult.Errors)
                     {
                         ModelState.AddModelError("", err.Description);
@@ -237,26 +255,21 @@ namespace HairDresserApp.Controllers
             }
             else
             {
-                // Yanlýþ doðrulama kodu girildiðinde hata mesajý göster ve deneme hakkýný güncelle
                 attemptsLeft--;
                 if (attemptsLeft <= 0)
                 {
-                    // Deneme hakký kalmadý, kullanýcýyý kayýt sayfasýna yönlendir
                     TempData["AttemptsLeft"] = attemptsLeft;
                     return RedirectToAction("Register");
                 }
 
-                // TempData içeriðini koru ve sakla
                 TempData["TempUser"] = tempUserData;
                 TempData["Token"] = originalToken;
                 TempData["AttemptsLeft"] = attemptsLeft;
                 TempData.Keep();
 
-                // Kullanýcýya deneme hakký kalmadýðý mesajýný göster
                 ModelState.AddModelError("", $"Yanlýþ doðrulama kodu girdiniz. Deneme hakkýnýz {attemptsLeft}.");
             }
 
-            // Kullanýcý kaydý baþarýsýz olduðunda geri dönüþ
             return View();
         }
 
@@ -271,4 +284,5 @@ namespace HairDresserApp.Controllers
             return View();
         }
     }
+
 }

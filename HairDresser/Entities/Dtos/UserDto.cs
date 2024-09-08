@@ -5,8 +5,10 @@ namespace Entities.Dtos
     public record UserDto
     {
         public string Id { get; set; }
+
+        public String? FullName { get; set; }
+
         [DataType(DataType.Text)]
-        [Required(ErrorMessage ="UserName is required.")]
         public String? UserName { get; init; }
         
         [DataType(DataType.EmailAddress)]

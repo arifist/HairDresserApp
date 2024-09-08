@@ -55,7 +55,7 @@ namespace HairDresserApp.Controllers
 
                 if (!_manager.ReservationService.IsReservationSlotAvailable(reservationDto.ReservationDate, reservationDto.HairCutTypes))
                 {
-                    return Json(new { success = false, message = "Bu saatte veya 30 dakika sonrası için uygun olmayan bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
+                    return Json(new { success = false, message = "Bu saatte bir rezervasyon mevcut. Lütfen başka bir saat seçin." });
                 }
 
                 _manager.ReservationService.CreateReservation(reservationDto);

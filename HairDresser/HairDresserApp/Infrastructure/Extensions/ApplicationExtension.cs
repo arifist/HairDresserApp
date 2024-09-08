@@ -1,3 +1,4 @@
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
@@ -34,13 +35,14 @@ namespace HairDresserApp.Infrastructure.Extensions
         {
             const string adminUser = "Admin";
             const string adminPassword = "Admin+123456";
+            const string FullName = "Admin";
 
             // UserManager
-            UserManager<IdentityUser> userManager = app
+            UserManager<AppUser> userManager = app
                 .ApplicationServices
                 .CreateScope()
                 .ServiceProvider
-                .GetRequiredService<UserManager<IdentityUser>>();
+                .GetRequiredService<UserManager<AppUser>>();
 
             // RoleManager
             RoleManager<IdentityRole> roleManager = app
@@ -49,14 +51,15 @@ namespace HairDresserApp.Infrastructure.Extensions
                 .ServiceProvider
                 .GetRequiredService<RoleManager<IdentityRole>>();
 
-            IdentityUser user = await userManager.FindByNameAsync(adminUser);
+            AppUser user = await userManager.FindByNameAsync(adminUser);
             if (user is null)
             {
-                user = new IdentityUser()
+                user = new AppUser()
                 {
                     Email = "zcomert@samsun.edu.tr",
                     PhoneNumber = "5061112233",
                     UserName = adminUser,
+                    FullName= FullName
                 };
 
                 var result = await userManager.CreateAsync(user, adminPassword);

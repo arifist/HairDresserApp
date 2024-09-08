@@ -11,9 +11,11 @@ namespace StoreApp.Infrastructure.Mapper
         public MappingProfile()
         {
             CreateMap<ReservationDtoForInsertion, Reservation>();
-            CreateMap<UserDtoForCreation, IdentityUser>();
-            CreateMap<UserDtoForUpdate, IdentityUser>().ReverseMap();
-            CreateMap<IdentityUser, UserDto>();
+            CreateMap<UserDtoForCreation, AppUser>()
+                  .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName)); // FullName'ı maple
+
+            CreateMap<UserDtoForUpdate, AppUser>().ReverseMap();
+            CreateMap<AppUser, UserDto>();
             CreateMap<WorkTimeDtoForUpdate, WorkTime>();
             CreateMap<WorkTimeDto, WorkTime>();
 

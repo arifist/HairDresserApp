@@ -4,9 +4,11 @@ namespace Entities.Dtos
 {
     public record RegisterDto
     {
-        [Required(ErrorMessage = "Username is required")]
         public String? UserName { get; init; }
-        
+
+        public String? FullName { get; set; }
+
+
         [Required(ErrorMessage = "Email is required")]
         public String? Email { get; init; }
 

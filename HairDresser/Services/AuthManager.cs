@@ -12,12 +12,12 @@ namespace Services
     public class AuthManager : IAuthService
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IRepositoryManager _manager;
 
         public AuthManager(RoleManager<IdentityRole> roleManager,
-        UserManager<IdentityUser> userManager,
+        UserManager<AppUser> userManager,
         IRepositoryManager manager,
         IMapper mapper)
         {
@@ -32,7 +32,7 @@ namespace Services
 
         public async Task<IdentityResult> CreateUser(UserDtoForCreation userDto)
         {
-            var user = _mapper.Map<IdentityUser>(userDto);
+            var user = _mapper.Map<AppUser>(userDto);
             var result = await _userManager.CreateAsync(user, userDto.Password);
 
             if (!result.Succeeded)
@@ -54,12 +54,12 @@ namespace Services
             return await _userManager.DeleteAsync(user);
         }
 
-        public IEnumerable<IdentityUser> GetAllUsers()
+        public IEnumerable<AppUser> GetAllUsers()
         {
             return _userManager.Users.ToList();
         }
 
-        public async Task<IdentityUser> GetOneUser(string userName)
+        public async Task<AppUser> GetOneUser(string userName)
         {
             var user = await _userManager.FindByNameAsync(userName);
             if (user is not null)

@@ -29,7 +29,7 @@ namespace HairDresserApp.Infrastructure.Extensions
 
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.User.RequireUniqueEmail = true;
@@ -37,15 +37,14 @@ namespace HairDresserApp.Infrastructure.Extensions
                 options.Password.RequireLowercase = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 6;
-
                 // Ýki faktörlü doðrulama için SMS token saðlayýcýsýný kullanma
-                options.Tokens.ProviderMap.Add("Phone", new TokenProviderDescriptor(typeof(Microsoft.AspNetCore.Identity.PhoneNumberTokenProvider<IdentityUser>)));
+                options.Tokens.ProviderMap.Add("Phone", new TokenProviderDescriptor(typeof(Microsoft.AspNetCore.Identity.PhoneNumberTokenProvider<AppUser>)));
             })
             .AddEntityFrameworkStores<RepositoryContext>()
             .AddDefaultTokenProviders(); // Varsayýlan token saðlayýcýlarý ekler
 
             // SMS doðrulama saðlayýcýsýný kaydedin
-            services.AddTransient<IUserTwoFactorTokenProvider<IdentityUser>, Microsoft.AspNetCore.Identity.PhoneNumberTokenProvider<IdentityUser>>();
+            services.AddTransient<IUserTwoFactorTokenProvider<AppUser>, Microsoft.AspNetCore.Identity.PhoneNumberTokenProvider<AppUser>>();
         }
 
 

@@ -28,6 +28,7 @@ namespace HairDresserApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -192,27 +193,27 @@ namespace HairDresserApp.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "35921a80-0f76-45f0-b8b6-59f864c0eb55", "10f4aa4a-3f16-465e-8a74-b3d291fa0404", "Admin", "ADMIN" });
+                values: new object[] { "255912f1-f997-46fc-8cb4-779c88fe33fb", "05da9ff2-f6c6-440b-8dea-ae00b07cceab", "Editor", "EDITOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "732237cd-2fef-4313-a64e-4215cccca136", "654724e1-a550-461f-b393-ee8f3f7581de", "User", "USER" });
+                values: new object[] { "5582020e-74f1-4e21-839f-5b096c3d0b39", "c5796853-6955-442f-ab14-506d65b4cd15", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d52718db-4356-4d68-8745-60e73cf9170b", "74670e53-070e-4671-95da-a13871dae7f7", "Editor", "EDITOR" });
+                values: new object[] { "784fdb2b-66e3-487a-a5ee-e47dd201dd9d", "0332bd3d-082f-4b70-a1c9-d0cdae4a43a2", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "Reservations",
                 columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName", "UserId", "UserName" },
-                values: new object[] { 1, new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3570), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3592), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "arif", null, null });
+                values: new object[] { 1, new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(773), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(787), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "arif", null, null });
 
             migrationBuilder.InsertData(
                 table: "Reservations",
                 columns: new[] { "ReservationId", "Date", "HairCutTypes", "ReservationDate", "ReservationDay", "ReservationHour", "ReservationMessage", "ReservationName", "UserId", "UserName" },
-                values: new object[] { 2, new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3595), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3596), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mehmet", null, null });
+                values: new object[] { 2, new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(789), "saç ve sakal", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(790), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mehmet", null, null });
 
             migrationBuilder.InsertData(
                 table: "WorkTimes",
@@ -249,6 +250,11 @@ namespace HairDresserApp.Migrations
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_UserName",
+                table: "AspNetUsers",
+                column: "UserName");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",

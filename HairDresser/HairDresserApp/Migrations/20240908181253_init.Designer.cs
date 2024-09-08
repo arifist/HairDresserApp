@@ -11,13 +11,83 @@ using Repositories;
 namespace HairDresserApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240908063539_init")]
+    [Migration("20240908181253_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
+
+            modelBuilder.Entity("Entities.Models.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.HasIndex("UserName");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
 
             modelBuilder.Entity("Entities.Models.Reservation", b =>
                 {
@@ -62,20 +132,20 @@ namespace HairDresserApp.Migrations
                         new
                         {
                             ReservationId = 1,
-                            Date = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3570),
+                            Date = new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(773),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3592),
+                            ReservationDay = new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(787),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "arif"
                         },
                         new
                         {
                             ReservationId = 2,
-                            Date = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3595),
+                            Date = new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(789),
                             HairCutTypes = "saç ve sakal",
                             ReservationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ReservationDay = new DateTime(2024, 9, 8, 9, 35, 38, 901, DateTimeKind.Local).AddTicks(3596),
+                            ReservationDay = new DateTime(2024, 9, 8, 21, 12, 52, 866, DateTimeKind.Local).AddTicks(790),
                             ReservationHour = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ReservationName = "mehmet"
                         });
@@ -134,22 +204,22 @@ namespace HairDresserApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "732237cd-2fef-4313-a64e-4215cccca136",
-                            ConcurrencyStamp = "654724e1-a550-461f-b393-ee8f3f7581de",
+                            Id = "784fdb2b-66e3-487a-a5ee-e47dd201dd9d",
+                            ConcurrencyStamp = "0332bd3d-082f-4b70-a1c9-d0cdae4a43a2",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "d52718db-4356-4d68-8745-60e73cf9170b",
-                            ConcurrencyStamp = "74670e53-070e-4671-95da-a13871dae7f7",
+                            Id = "255912f1-f997-46fc-8cb4-779c88fe33fb",
+                            ConcurrencyStamp = "05da9ff2-f6c6-440b-8dea-ae00b07cceab",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "35921a80-0f76-45f0-b8b6-59f864c0eb55",
-                            ConcurrencyStamp = "10f4aa4a-3f16-465e-8a74-b3d291fa0404",
+                            Id = "5582020e-74f1-4e21-839f-5b096c3d0b39",
+                            ConcurrencyStamp = "c5796853-6955-442f-ab14-506d65b4cd15",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -176,70 +246,6 @@ namespace HairDresserApp.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -332,7 +338,7 @@ namespace HairDresserApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -341,7 +347,7 @@ namespace HairDresserApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -356,7 +362,7 @@ namespace HairDresserApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,7 +371,7 @@ namespace HairDresserApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
