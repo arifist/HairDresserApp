@@ -111,7 +111,7 @@ app.UseAntiforgery();
 
 app.MapAuthEndpoints();
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
