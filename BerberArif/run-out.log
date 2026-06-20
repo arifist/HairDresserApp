@@ -1,0 +1,75 @@
+D:\yedek\yazilim\NewApps\BerberArif\BerberArif\Properties\launchSettings.json içindeki başlatma ayarları kullanılıyor...
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "Admins" AS "a")
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "ServiceTypes" AS "s")
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "WorkingHours" AS "w")
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5192
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\yedek\yazilim\NewApps\BerberArif\BerberArif
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "s"."Id", "s"."Description", "s"."DurationMinutes", "s"."Icon", "s"."IsActive", "s"."Name", "s"."Price", "s"."SortOrder"
+      FROM "ServiceTypes" AS "s"
+      WHERE "s"."IsActive"
+      ORDER BY "s"."SortOrder"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "w"."Id", "w"."DayOfWeek", "w"."EndTime", "w"."IsOpen", "w"."StartTime"
+      FROM "WorkingHours" AS "w"
+      ORDER BY CASE
+          WHEN "w"."DayOfWeek" = 0 THEN 7
+          ELSE CAST("w"."DayOfWeek" AS INTEGER)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "w"."Id", "w"."DayOfWeek", "w"."EndTime", "w"."IsOpen", "w"."StartTime"
+      FROM "WorkingHours" AS "w"
+      ORDER BY CASE
+          WHEN "w"."DayOfWeek" = 0 THEN 7
+          ELSE CAST("w"."DayOfWeek" AS INTEGER)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "s"."Id", "s"."Description", "s"."DurationMinutes", "s"."Icon", "s"."IsActive", "s"."Name", "s"."Price", "s"."SortOrder"
+      FROM "ServiceTypes" AS "s"
+      WHERE "s"."IsActive"
+      ORDER BY "s"."SortOrder"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "s"."Id", "s"."Description", "s"."DurationMinutes", "s"."Icon", "s"."IsActive", "s"."Name", "s"."Price", "s"."SortOrder"
+      FROM "ServiceTypes" AS "s"
+      WHERE "s"."IsActive"
+      ORDER BY "s"."SortOrder"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "s"."Id", "s"."Description", "s"."DurationMinutes", "s"."Icon", "s"."IsActive", "s"."Name", "s"."Price", "s"."SortOrder"
+      FROM "ServiceTypes" AS "s"
+      WHERE "s"."IsActive"
+      ORDER BY "s"."SortOrder"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "s"."Id", "s"."Description", "s"."DurationMinutes", "s"."Icon", "s"."IsActive", "s"."Name", "s"."Price", "s"."SortOrder"
+      FROM "ServiceTypes" AS "s"
+      WHERE "s"."IsActive"
+      ORDER BY "s"."SortOrder"

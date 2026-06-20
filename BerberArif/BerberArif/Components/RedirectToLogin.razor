@@ -1,0 +1,12 @@
+@inject NavigationManager NavigationManager
+
+@code {
+    [Parameter]
+    public string TargetPath { get; set; } = "/giris";
+
+    protected override void OnInitialized()
+    {
+        var returnUrl = Uri.EscapeDataString(NavigationManager.Uri);
+        NavigationManager.NavigateTo($"{TargetPath}?returnUrl={returnUrl}", forceLoad: true);
+    }
+}

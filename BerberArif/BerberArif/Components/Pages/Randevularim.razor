@@ -1,0 +1,83 @@
+@page "/randevularim"
+@rendermode InteractiveServer
+@attribute [Authorize(Roles = "Customer")]
+@inject IAppointmentService AppointmentService
+@inject AuthenticationStateProvider AuthStateProvider
+
+<PageTitle>Randevularım | Kuaför Arif</PageTitle>
+
+<section class="ka-section">
+    <div class="container" style="max-width:760px;">
+        <div class="ka-section-title">
+            <div class="ka-kicker">Hesabım</div>
+            <div class="divider-gold"></div>
+            <h2>Randevularım</h2>
+        </div>
+
+        @if (appointments is null)
+        {
+            <p class="text-center text-muted">Yükleniyor...</p>
+        }
+        else if (appointments.Count == 0)
+        {
+            <div class="ka-form-card text-center">
+                <i class="bi bi-calendar-x text-gold" style="font-size:2.5rem;"></i>
+                <p class="text-muted mt-3 mb-3">Henüz bir randevunuz bulunmuyor.</p>
+                <a href="/randevu-al" class="btn btn-gold">Randevu Al</a>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex flex-column gap-3">
+                @foreach (var a in appointments)
+                {
+                    <div class="ka-card p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                        <div>
+                            <h6 class="mb-1">@a.ServiceType?.Name</h6>
+                            <div class="text-muted small">
+                                <i class="bi bi-calendar3 me-1"></i>@a.StartTime.ToString("dd MMMM yyyy, dddd")
+                                &nbsp;·&nbsp;
+                                <i class="bi bi-clock me-1"></i>@a.StartTime.ToString("HH:mm") - @a.EndTime.ToString("HH:mm")
+                            </div>
+                        </div>
+                        <span class="badge @StatusBadgeClass(a.Status) px-3 py-2">@StatusText(a.Status)</span>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<Appointment>? appointments;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var customerIdClaim = authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+        if (customerIdClaim is not null && int.TryParse(customerIdClaim.Value, out var customerId))
+        {
+            appointments = await AppointmentService.GetCustomerAppointmentsAsync(customerId);
+        }
+        else
+        {
+            appointments = new();
+        }
+    }
+
+    private static string StatusBadgeClass(AppointmentStatus status) => status switch
+    {
+        AppointmentStatus.Confirmed => "badge-confirmed",
+        AppointmentStatus.Cancelled => "badge-cancelled",
+        AppointmentStatus.Completed => "badge-completed",
+        _ => "bg-secondary"
+    };
+
+    private static string StatusText(AppointmentStatus status) => status switch
+    {
+        AppointmentStatus.Confirmed => "Onaylandı",
+        AppointmentStatus.Cancelled => "İptal Edildi",
+        AppointmentStatus.Completed => "Tamamlandı",
+        _ => status.ToString()
+    };
+}

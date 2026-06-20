@@ -1,0 +1,480 @@
+/* ============================================================
+   Kuaför Arif - Tema CSS
+   ============================================================ */
+
+:root {
+    --ka-bg: #121212;
+    --ka-bg-soft: #1a1a1a;
+    --ka-bg-card: #1e1e1e;
+    --ka-gold: #cda349;
+    --ka-gold-light: #e6c878;
+    --ka-text: #f1efe9;
+    --ka-text-muted: #b7b2a6;
+    --ka-border: #33312c;
+}
+
+html, body {
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--ka-bg);
+    background-image: radial-gradient(circle at 50% 0%, rgba(205, 163, 73, 0.05) 0%, transparent 45%);
+    color: var(--ka-text);
+}
+
+h1, h2, h3, h4, h5, .display-heading {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 700;
+}
+
+a {
+    color: var(--ka-gold-light);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--ka-gold);
+}
+
+.text-gold {
+    color: var(--ka-gold) !important;
+}
+
+.bg-soft {
+    background-color: var(--ka-bg-soft) !important;
+}
+
+.btn-gold {
+    background-image: linear-gradient(135deg, var(--ka-gold-light), var(--ka-gold));
+    border-color: var(--ka-gold);
+    color: #1a1408;
+    font-weight: 600;
+    letter-spacing: .03em;
+    box-shadow: 0 6px 16px rgba(205, 163, 73, 0.25);
+    transition: all .2s ease;
+}
+
+.btn-gold:hover, .btn-gold:focus {
+    background-image: linear-gradient(135deg, var(--ka-gold-light), var(--ka-gold-light));
+    border-color: var(--ka-gold-light);
+    color: #1a1408;
+    box-shadow: 0 10px 22px rgba(205, 163, 73, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-outline-gold {
+    border: 1.5px solid var(--ka-gold);
+    color: var(--ka-gold);
+    font-weight: 600;
+    background: transparent;
+}
+
+.btn-outline-gold:hover {
+    background-color: var(--ka-gold);
+    color: #1a1408;
+}
+
+/* ---------- Navbar ---------- */
+.ka-navbar {
+    background-color: rgba(18, 18, 18, 0.97);
+    border-bottom: 1px solid var(--ka-border);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    backdrop-filter: blur(6px);
+}
+
+.ka-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ka-gold) !important;
+    letter-spacing: .04em;
+}
+
+.ka-brand .ka-brand-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: .65rem;
+    letter-spacing: .25em;
+    color: var(--ka-text-muted);
+    display: block;
+    text-transform: uppercase;
+}
+
+.ka-navbar .nav-link {
+    color: var(--ka-text) !important;
+    font-weight: 500;
+    padding: .5rem 1rem !important;
+}
+
+.ka-navbar .nav-link.active,
+.ka-navbar .nav-link:hover {
+    color: var(--ka-gold) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--ka-gold) !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) sepia(1) saturate(3) hue-rotate(0deg);
+}
+
+/* ---------- Hero ---------- */
+.ka-hero {
+    background-image: linear-gradient(rgba(18, 14, 6, 0.62), rgba(18, 18, 18, 0.88)), url("/images/hero-chair.jpg");
+    background-size: cover;
+    background-position: center 25%;
+    border-bottom: 1px solid var(--ka-border);
+    padding: 5rem 0 4rem;
+}
+
+.ka-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.15;
+}
+
+.ka-hero .lead {
+    color: var(--ka-text-muted);
+    font-size: 1.15rem;
+}
+
+.ka-hero-badge {
+    display: inline-block;
+    border: 1px solid var(--ka-gold);
+    color: var(--ka-gold);
+    border-radius: 50px;
+    padding: .3rem 1rem;
+    font-size: .8rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+}
+
+/* ---------- Cards ---------- */
+.ka-card {
+    background-image: linear-gradient(160deg, var(--ka-bg-card) 0%, #181818 100%);
+    border: 1px solid var(--ka-border);
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    height: 100%;
+}
+
+.ka-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--ka-gold);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+.ka-card .ka-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(205, 163, 73, 0.12);
+    color: var(--ka-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ka-section {
+    padding: 4rem 0;
+}
+
+.ka-section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.ka-section-title .ka-kicker {
+    color: var(--ka-gold);
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+/* ---------- Forms ---------- */
+.ka-form-card {
+    background-image: linear-gradient(160deg, var(--ka-bg-card) 0%, #181818 100%);
+    border: 1px solid var(--ka-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+}
+
+.form-control, .form-select {
+    background-color: #262420;
+    border: 1px solid var(--ka-border);
+    color: var(--ka-text);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #262420;
+    color: var(--ka-text);
+    border-color: var(--ka-gold);
+    box-shadow: 0 0 0 0.2rem rgba(205, 163, 73, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--ka-text-muted);
+}
+
+.form-select option {
+    background-color: var(--ka-bg-card);
+    color: var(--ka-text);
+}
+
+.form-label {
+    color: var(--ka-text-muted);
+    font-weight: 500;
+}
+
+/* ---------- Time slot grid ---------- */
+.ka-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    gap: .6rem;
+}
+
+.ka-slot-btn {
+    border: 1.5px solid var(--ka-border);
+    background-color: var(--ka-bg-soft);
+    color: var(--ka-text);
+    border-radius: 10px;
+    padding: .65rem .4rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all .15s ease;
+}
+
+.ka-slot-btn:hover {
+    border-color: var(--ka-gold);
+}
+
+.ka-slot-btn.selected {
+    background-color: var(--ka-gold);
+    border-color: var(--ka-gold);
+    color: #1a1408;
+}
+
+.ka-service-option {
+    border: 1.5px solid var(--ka-border);
+    background-color: var(--ka-bg-soft);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all .15s ease;
+    height: 100%;
+}
+
+.ka-service-option:hover {
+    border-color: var(--ka-gold);
+}
+
+.ka-service-option.selected {
+    border-color: var(--ka-gold);
+    background-color: rgba(205, 163, 73, 0.1);
+}
+
+/* ---------- Footer ---------- */
+.ka-footer {
+    background-color: #0a0a0a;
+    border-top: 1px solid var(--ka-border);
+    padding: 3rem 0 1.5rem;
+    color: var(--ka-text-muted);
+}
+
+.ka-footer a {
+    color: var(--ka-text-muted);
+}
+
+.ka-footer a:hover {
+    color: var(--ka-gold);
+}
+
+.ka-social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--ka-border);
+    margin-right: .5rem;
+    color: var(--ka-text);
+}
+
+.ka-social-icon:hover {
+    border-color: var(--ka-gold);
+    color: var(--ka-gold);
+}
+
+/* ---------- Status badges ---------- */
+.badge-confirmed { background-color: #1f6f43; }
+.badge-cancelled { background-color: #7a2424; }
+.badge-completed { background-color: #555; }
+
+/* ---------- Admin ---------- */
+.ka-admin-sidebar {
+    background-color: #0d0d0d;
+    min-height: 100vh;
+    border-right: 1px solid var(--ka-border);
+}
+
+.ka-admin-sidebar .nav-link {
+    color: var(--ka-text-muted);
+    border-radius: 8px;
+    margin-bottom: .25rem;
+    padding: .6rem 1rem;
+}
+
+.ka-admin-sidebar .nav-link.active, .ka-admin-sidebar .nav-link:hover {
+    background-color: rgba(205, 163, 73, 0.12);
+    color: var(--ka-gold);
+}
+
+.table-dark-ka {
+    --bs-table-bg: var(--ka-bg-card);
+    --bs-table-color: var(--ka-text);
+    --bs-table-border-color: var(--ka-border);
+}
+
+/* ---------- Misc ---------- */
+.content {
+    padding-top: 0;
+}
+
+.ka-portrait-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--ka-border);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.ka-portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ka-gallery-img {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--ka-border);
+    aspect-ratio: 3/4;
+}
+
+.ka-gallery-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.ka-gallery-img:hover img {
+    transform: scale(1.06);
+}
+
+.ka-whatsapp-float {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #25d366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    z-index: 1040;
+    transition: transform 0.2s ease;
+}
+
+.ka-whatsapp-float:hover {
+    transform: scale(1.08);
+    color: #fff;
+}
+
+.ka-map-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--ka-border);
+    height: 220px;
+}
+
+.ka-map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.2) contrast(1.05) brightness(0.92);
+}
+
+.divider-gold {
+    width: 60px;
+    height: 3px;
+    background-color: var(--ka-gold);
+    margin: 0 auto 1.2rem;
+}
+
+@media (max-width: 576px) {
+    .ka-hero {
+        padding: 3.5rem 0 2.5rem;
+        text-align: center;
+    }
+    .ka-section {
+        padding: 2.5rem 0;
+    }
+}
+
+h1:focus {
+    outline: none;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid #e50000;
+}
+
+.validation-message {
+    color: #ff8585;
+}
+
+.blazor-error-boundary {
+    background: #b32121;
+    padding: 1rem 1rem 1rem 1.5rem;
+    color: white;
+}
+
+.blazor-error-boundary::after {
+    content: "Bir hata oluştu.";
+}
+
+#blazor-error-ui {
+    background: #b32121;
+    color: white;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    display: none;
+    left: 0;
+    padding: .8rem 1.25rem .6rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1031;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}

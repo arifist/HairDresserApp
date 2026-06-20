@@ -1,0 +1,23 @@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
+            <NotAuthorized>
+                @{
+                    var isAdminRoute = routeData.PageType.Namespace?.Contains("Admin") ?? false;
+                    var target = isAdminRoute ? "/admin/giris" : "/giris";
+                }
+                <RedirectToLogin TargetPath="@target" />
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <div class="container py-5 text-center">
+                <h1 class="display-4">404</h1>
+                <p class="lead">Aradığınız sayfa bulunamadı.</p>
+                <a href="/" class="btn btn-warning">Anasayfaya Dön</a>
+            </div>
+        </LayoutView>
+    </NotFound>
+</Router>
