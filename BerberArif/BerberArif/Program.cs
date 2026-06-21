@@ -3,10 +3,18 @@ using BerberArif.Data;
 using BerberArif.Endpoints;
 using BerberArif.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Twilio;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Render/Docker gibi container ortamlarinda PORT env degiskeni ile dinleme adresi atanir.
+var containerPort = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(containerPort))
+{
+    builder.WebHost.UseUrls($"http://0.0.0.0:{containerPort}");
+}
 
 var twilioAccountSid = builder.Configuration["Twilio:AccountSid"];
 var twilioAuthToken = builder.Configuration["Twilio:AuthToken"];
@@ -77,6 +85,15 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddCors();
 
+// Render/Docker gibi reverse-proxy arkasinda calisirken X-Forwarded-Proto basligina
+// guvenmezsek UseHttpsRedirection sonsuz yonlendirme dongusune girer.
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -93,6 +110,8 @@ using (var scope = app.Services.CreateScope())
     }
     SeedData.Initialize(db);
 }
+
+app.UseForwardedHeaders();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
