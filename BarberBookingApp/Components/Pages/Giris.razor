@@ -1,0 +1,44 @@
+@page "/giris"
+@rendermode InteractiveServer
+@using BarberBookingApp.Helpers
+
+<PageTitle>Giriş Yap | Kuaför Arif</PageTitle>
+
+<section class="ka-section">
+    <div class="container" style="max-width:480px;">
+        <div class="ka-form-card">
+            <h3 class="text-center mb-1">Giriş Yap</h3>
+            <p class="text-muted text-center mb-4">Telefon numaranızla giriş yapın</p>
+
+            @if (Error == "name-required")
+            {
+                <div class="alert alert-warning small">Yeni üyelik için lütfen ad soyad bilgisini de girin.</div>
+            }
+            else if (Error == "invalid-phone")
+            {
+                <div class="alert alert-danger small">Geçersiz telefon numarası. Lütfen 5 ile başlayan 10 haneli numaranızı girin.</div>
+            }
+
+            <form method="post" action="/api/auth/verify-otp">
+                <input type="hidden" name="returnUrl" value="@ReturnUrl" />
+                <div class="mb-3">
+                    <label class="form-label">Telefon Numarası</label>
+                    <input type="tel" name="phoneNumber" class="form-control" value="@Phone" placeholder="5XX XXX XX XX" autocomplete="tel" />
+                    <small class="text-muted">Başında 0 olmadan, 5 ile başlayan 10 haneli numaranızı girin.</small>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Ad Soyad</label>
+                    <input type="text" name="fullName" class="form-control" placeholder="Adınız Soyadınız" autocomplete="name" />
+                    <small class="text-muted">Yeni üyelikse zorunlu, mevcut hesabınız varsa boş bırakabilirsiniz.</small>
+                </div>
+                <button type="submit" class="btn btn-gold w-100">Giriş Yap</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@code {
+    [SupplyParameterFromQuery] public string? ReturnUrl { get; set; }
+    [SupplyParameterFromQuery] public string? Error   { get; set; }
+    [SupplyParameterFromQuery] public string? Phone   { get; set; }
+}
