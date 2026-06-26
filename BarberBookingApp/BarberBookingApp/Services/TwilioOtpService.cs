@@ -1,0 +1,168 @@
+using BarberBookingApp.Data;
+<<<<<<<< HEAD:BarberBookingApp/Services/TwilioOtpService.cs
+using BarberBookingApp.Helpers;
+========
+>>>>>>>> 4a268c4fe160d8d4f3270dd8111d60b2df812ab1:BarberBookingApp/BarberBookingApp/Services/TwilioOtpService.cs
+using BarberBookingApp.Models;
+using Microsoft.EntityFrameworkCore;
+using Twilio.Exceptions;
+using Twilio.Rest.Verify.V2.Service;
+
+namespace BarberBookingApp.Services;
+
+public class TwilioOtpService : IOtpService
+{
+    private static readonly TimeSpan CodeLifetime = TimeSpan.FromMinutes(5);
+    private static readonly TimeSpan ResendCooldown = TimeSpan.FromSeconds(60);
+
+    private readonly AppDbContext _db;
+    private readonly IConfiguration _configuration;
+    private readonly ILogger<TwilioOtpService> _logger;
+
+    public TwilioOtpService(AppDbContext db, IConfiguration configuration, ILogger<TwilioOtpService> logger)
+    {
+        _db = db;
+        _configuration = configuration;
+        _logger = logger;
+    }
+
+    private string? VerifyServiceSid => _configuration["Twilio:VerifyServiceSid"];
+
+    private bool IsConfigured =>
+        !string.IsNullOrWhiteSpace(_configuration["Twilio:AccountSid"]) &&
+        !string.IsNullOrWhiteSpace(_configuration["Twilio:AuthToken"]) &&
+        !string.IsNullOrWhiteSpace(VerifyServiceSid);
+
+    private bool UseInAppCode =>
+        _configuration.GetValue<bool>("Twilio:UseInAppCode");
+
+    public async Task<OtpRequestResult> RequestCodeAsync(string phoneNumber)
+    {
+        var now = DateTime.UtcNow;
+        phoneNumber = phoneNumber.Trim();
+
+        var lastLog = await _db.SmsLogs
+            .Where(l => l.PhoneNumber == phoneNumber)
+            .OrderByDescending(l => l.SentAt)
+            .FirstOrDefaultAsync();
+
+        if (lastLog != null && now - lastLog.SentAt < ResendCooldown)
+        {
+            var waitSeconds = (int)(ResendCooldown - (now - lastLog.SentAt)).TotalSeconds;
+            return new OtpRequestResult(false, $"Lütfen yeni kod istemeden önce {waitSeconds} saniye bekleyin.");
+        }
+
+        if (!IsConfigured || UseInAppCode)
+        {
+            return await RequestSimulatedCodeAsync(phoneNumber, now);
+        }
+
+        var log = new SmsLog
+        {
+            PhoneNumber = phoneNumber,
+            Message = "Twilio Verify doğrulama kodu",
+            SentAt = now,
+            Provider = "Twilio Verify"
+        };
+
+        try
+        {
+            var verification = await VerificationResource.CreateAsync(
+                to: PhoneNumberHelper.ToE164(phoneNumber),
+                channel: "sms",
+                pathServiceSid: VerifyServiceSid);
+
+            log.Success = verification.Status == "pending";
+            _db.SmsLogs.Add(log);
+            await _db.SaveChangesAsync();
+
+            if (!log.Success)
+            {
+                return new OtpRequestResult(false, "SMS gönderilemedi, lütfen daha sonra tekrar deneyin.");
+            }
+
+            return new OtpRequestResult(true, null);
+        }
+        catch (ApiException ex)
+        {
+            _logger.LogError(ex, "Twilio Verify SMS gönderimi başarısız: {Phone}", phoneNumber);
+            log.Success = false;
+            log.ErrorMessage = ex.Message;
+            _db.SmsLogs.Add(log);
+            await _db.SaveChangesAsync();
+            return new OtpRequestResult(false, "SMS gönderilemedi, lütfen daha sonra tekrar deneyin.");
+        }
+    }
+
+    public async Task<bool> VerifyCodeAsync(string phoneNumber, string code)
+    {
+        phoneNumber = phoneNumber.Trim();
+
+        if (!IsConfigured || UseInAppCode)
+        {
+            return await VerifySimulatedCodeAsync(phoneNumber, code);
+        }
+
+        try
+        {
+            var check = await VerificationCheckResource.CreateAsync(
+                to: PhoneNumberHelper.ToE164(phoneNumber),
+                code: code,
+                pathServiceSid: VerifyServiceSid);
+
+            return check.Status == "approved";
+        }
+        catch (ApiException ex)
+        {
+            _logger.LogError(ex, "Twilio Verify kod doğrulaması başarısız: {Phone}", phoneNumber);
+            return false;
+        }
+    }
+
+    private async Task<OtpRequestResult> RequestSimulatedCodeAsync(string phoneNumber, DateTime now)
+    {
+        var code = Random.Shared.Next(100000, 999999).ToString();
+
+        _db.OtpVerifications.Add(new OtpVerification
+        {
+            PhoneNumber = phoneNumber,
+            Code = code,
+            ExpiresAt = now.Add(CodeLifetime),
+            CreatedAt = now,
+            IsUsed = false
+        });
+
+        _db.SmsLogs.Add(new SmsLog
+        {
+            PhoneNumber = phoneNumber,
+            Message = $"Kuaför Arif dogrulama kodunuz: {code}. Kod {CodeLifetime.Minutes} dakika gecerlidir.",
+            SentAt = now,
+            Provider = "Simulated(Twilio)",
+            Success = true
+        });
+
+        await _db.SaveChangesAsync();
+        _logger.LogInformation("[SMS-SIMULASYON] -> {Phone}: kod {Code}", phoneNumber, code);
+
+        return new OtpRequestResult(true, null, code);
+    }
+
+    private async Task<bool> VerifySimulatedCodeAsync(string phoneNumber, string code)
+    {
+        var now = DateTime.UtcNow;
+
+        var otp = await _db.OtpVerifications
+            .Where(o => o.PhoneNumber == phoneNumber && !o.IsUsed && o.ExpiresAt > now)
+            .OrderByDescending(o => o.CreatedAt)
+            .FirstOrDefaultAsync();
+
+        if (otp == null || otp.Code != code)
+        {
+            return false;
+        }
+
+        otp.IsUsed = true;
+        await _db.SaveChangesAsync();
+        return true;
+    }
+}

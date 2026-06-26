@@ -15,10 +15,6 @@ CultureInfo.DefaultThreadCurrentUICulture = turkishCulture;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// IIS stdout log klasörü önceden yoksa ANCM log dosyasını açamaz.
-var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
-Directory.CreateDirectory(logsDir);
-
 // Render/Docker gibi container ortamlarinda PORT env degiskeni ile dinleme adresi atanir.
 var containerPort = Environment.GetEnvironmentVariable("PORT");
 if (!string.IsNullOrWhiteSpace(containerPort))

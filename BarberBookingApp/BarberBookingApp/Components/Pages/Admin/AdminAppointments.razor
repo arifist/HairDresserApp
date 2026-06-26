@@ -1,0 +1,241 @@
+@page "/admin/randevular"
+@layout AdminLayout
+@rendermode InteractiveServer
+@attribute [Authorize(Roles = "Admin")]
+@inject IAppointmentService AppointmentService
+@inject AppDbContext Db
+
+<PageTitle>Randevular | Kuaför Arif Admin</PageTitle>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Randevular</h2>
+    <button class="btn btn-gold" @onclick="() => showWalkInForm = !showWalkInForm">
+        @(showWalkInForm ? "Formu Kapat" : "Yeni Randevu Ekle")
+    </button>
+</div>
+
+@if (showWalkInForm)
+{
+    <div class="ka-card p-4 mb-4">
+        <h5 class="mb-3">Yeni Randevu Ekle (Telefonla/Gelen Müşteri)</h5>
+        <div class="row gy-2">
+            <div class="col-md-4">
+                <label class="form-label small">Ad Soyad</label>
+                <input class="form-control" @bind="walkInName" placeholder="Müşteri adı soyadı" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small">Telefon</label>
+                <input class="form-control" @bind="walkInPhone" placeholder="5XX XXX XX XX" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small">Hizmet</label>
+                <select class="form-select" @bind="walkInServiceTypeId">
+                    <option value="">Seçin</option>
+                    @if (serviceTypes is not null)
+                    {
+                        @foreach (var s in serviceTypes)
+                        {
+                            <option value="@s.Id">@s.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small">Tarih / Saat</label>
+                <input type="datetime-local" class="form-control" @bind="walkInDateTime" />
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(walkInError))
+        {
+            <div class="alert alert-danger small mt-3 mb-0">@walkInError</div>
+        }
+        <button class="btn btn-gold mt-3" @onclick="SubmitWalkIn" disabled="@walkInSubmitting">
+            @(walkInSubmitting ? "Kaydediliyor..." : "Randevuyu Kaydet")
+        </button>
+    </div>
+}
+
+<div class="ka-card p-3 mb-4">
+    <div class="row gy-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label small">Tarih</label>
+            <input type="date" class="form-control" @bind="filterDate" @bind:after="LoadAppointments" />
+        </div>
+        <div class="col-md-3">
+            <label class="form-label small">Durum</label>
+            <select class="form-select" @bind="filterStatus" @bind:after="LoadAppointments">
+                <option value="">Tümü</option>
+                <option value="Confirmed">Onaylı</option>
+                <option value="Cancelled">İptal Edildi</option>
+                <option value="Completed">Tamamlandı</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-outline-gold w-100" @onclick="ClearFilters">Filtreyi Temizle</button>
+        </div>
+    </div>
+</div>
+
+@if (appointments is null)
+{
+    <p class="text-muted">Yükleniyor...</p>
+}
+else if (appointments.Count == 0)
+{
+    <p class="text-muted">Kriterlere uygun randevu bulunamadı.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-dark-ka align-middle">
+            <thead>
+                <tr>
+                    <th>Tarih / Saat</th>
+                    <th>Müşteri</th>
+                    <th>Telefon</th>
+                    <th>Hizmet</th>
+                    <th>Durum</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in appointments)
+                {
+                    <tr>
+                        <td>@a.StartTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@a.Customer?.FullName</td>
+                        <td>@a.Customer?.PhoneNumber</td>
+                        <td>@a.ServiceType?.Name</td>
+                        <td>
+                            <span class="badge @StatusBadgeClass(a.Status)">@StatusText(a.Status)</span>
+                        </td>
+                        <td>
+                            @if (a.Status != AppointmentStatus.Cancelled && cancelingId != a.Id)
+                            {
+                                <button class="btn btn-sm btn-outline-danger" @onclick="() => StartCancel(a.Id)">
+                                    İptal Et
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                    @if (cancelingId == a.Id)
+                    {
+                        <tr>
+                            <td colspan="6">
+                                <div class="ka-card p-3">
+                                    <label class="form-label small">İptal nedeni (müşteriye SMS olarak iletilmez, sadece kayıt için)</label>
+                                    <textarea class="form-control mb-2" rows="2" @bind="cancelReason"></textarea>
+                                    <button class="btn btn-sm btn-gold me-2" @onclick="() => ConfirmCancel(a.Id)" disabled="@cancelling">
+                                        @(cancelling ? "İşleniyor..." : "İptali Onayla ve SMS Gönder")
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-gold" @onclick="() => cancelingId = null">Vazgeç</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private List<Appointment>? appointments;
+    private DateTime? filterDate;
+    private string filterStatus = string.Empty;
+    private int? cancelingId;
+    private string cancelReason = string.Empty;
+    private bool cancelling;
+
+    private List<ServiceType>? serviceTypes;
+    private bool showWalkInForm;
+    private string walkInName = string.Empty;
+    private string walkInPhone = string.Empty;
+    private int? walkInServiceTypeId;
+    private DateTime walkInDateTime = DateTime.Now;
+    private string? walkInError;
+    private bool walkInSubmitting;
+
+    protected override async Task OnInitializedAsync()
+    {
+        serviceTypes = await Db.ServiceTypes.Where(s => s.IsActive).OrderBy(s => s.SortOrder).ToListAsync();
+        await LoadAppointments();
+    }
+
+    private async Task SubmitWalkIn()
+    {
+        walkInError = null;
+
+        if (string.IsNullOrWhiteSpace(walkInName) || walkInServiceTypeId is null)
+        {
+            walkInError = "Lütfen ad soyad ve hizmet seçin.";
+            return;
+        }
+
+        walkInSubmitting = true;
+        var result = await AppointmentService.CreateWalkInAppointmentAsync(
+            walkInName.Trim(), walkInPhone, walkInServiceTypeId.Value, walkInDateTime);
+        walkInSubmitting = false;
+
+        if (!result.Success)
+        {
+            walkInError = result.ErrorMessage;
+            return;
+        }
+
+        showWalkInForm = false;
+        walkInName = string.Empty;
+        walkInPhone = string.Empty;
+        walkInServiceTypeId = null;
+        walkInDateTime = DateTime.Now;
+        await LoadAppointments();
+    }
+
+    private async Task LoadAppointments()
+    {
+        DateOnly? date = filterDate.HasValue ? DateOnly.FromDateTime(filterDate.Value) : null;
+        AppointmentStatus? status = string.IsNullOrEmpty(filterStatus)
+            ? null
+            : Enum.Parse<AppointmentStatus>(filterStatus);
+
+        appointments = await AppointmentService.GetAllAppointmentsAsync(date, status);
+    }
+
+    private async Task ClearFilters()
+    {
+        filterDate = null;
+        filterStatus = string.Empty;
+        await LoadAppointments();
+    }
+
+    private void StartCancel(int id)
+    {
+        cancelingId = id;
+        cancelReason = string.Empty;
+    }
+
+    private async Task ConfirmCancel(int id)
+    {
+        cancelling = true;
+        await AppointmentService.CancelAppointmentAsync(id, "Admin", cancelReason);
+        cancelling = false;
+        cancelingId = null;
+        await LoadAppointments();
+    }
+
+    private static string StatusBadgeClass(AppointmentStatus status) => status switch
+    {
+        AppointmentStatus.Confirmed => "badge-confirmed",
+        AppointmentStatus.Cancelled => "badge-cancelled",
+        AppointmentStatus.Completed => "badge-completed",
+        _ => "bg-secondary"
+    };
+
+    private static string StatusText(AppointmentStatus status) => status switch
+    {
+        AppointmentStatus.Confirmed => "Onaylı",
+        AppointmentStatus.Cancelled => "İptal Edildi",
+        AppointmentStatus.Completed => "Tamamlandı",
+        _ => status.ToString()
+    };
+}

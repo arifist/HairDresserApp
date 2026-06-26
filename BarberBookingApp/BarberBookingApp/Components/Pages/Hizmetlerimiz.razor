@@ -1,0 +1,68 @@
+@page "/hizmetlerimiz"
+@inject AppDbContext Db
+
+<PageTitle>Hizmetlerimiz | Kuaför Arif</PageTitle>
+
+<section class="ka-hero py-5">
+    <div class="container text-center">
+        <span class="ka-hero-badge">Hizmetlerimiz</span>
+        <h1>Size Özel Bakım Paketleri</h1>
+        <p class="lead mx-auto" style="max-width:700px;">
+            Her hizmetimiz, kişisel ihtiyaçlarınıza göre uyarlanır. Aşağıdan seçiminizi yapıp hemen randevu alabilirsiniz.
+        </p>
+    </div>
+</section>
+
+<section class="ka-section">
+    <div class="container">
+        @if (services is null)
+        {
+            <p class="text-center text-muted">Yükleniyor...</p>
+        }
+        else if (services.Count == 0)
+        {
+            <p class="text-center text-muted">Şu anda tanımlı bir hizmet bulunmuyor.</p>
+        }
+        else
+        {
+            <div class="row gy-4">
+                @foreach (var s in services)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="ka-card p-4 d-flex flex-column">
+                            <div class="ka-icon"><i class="@s.Icon"></i></div>
+                            <h4>@s.Name</h4>
+                            <p class="text-muted flex-grow-1">@s.Description</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge rounded-pill text-bg-dark border border-secondary">
+                                    <i class="bi bi-clock me-1"></i>@s.DurationMinutes dk
+                                </span>
+                                @if (s.Price > 0)
+                                {
+                                    <span class="text-gold fs-5 fw-semibold">@s.Price.ToString("0") ₺</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">Fiyat görüşülür</span>
+                                }
+                            </div>
+                            <a href="/randevu-al" class="btn btn-outline-gold w-100">Bu Hizmet İçin Randevu Al</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<ServiceType>? services;
+
+    protected override async Task OnInitializedAsync()
+    {
+        services = await Db.ServiceTypes
+            .Where(s => s.IsActive)
+            .OrderBy(s => s.SortOrder)
+            .ToListAsync();
+    }
+}
