@@ -2,7 +2,7 @@
 @layout AdminLayout
 @rendermode InteractiveServer
 @attribute [Authorize(Roles = "Admin")]
-@inject AppDbContext Db
+@inject JsonDataStore Store
 
 <PageTitle>Hizmetler | Kuaför Arif Admin</PageTitle>
 
@@ -80,39 +80,33 @@ else
     private List<ServiceType>? services;
     private bool saving;
     private bool saved;
-
     private string newName = string.Empty;
     private int newDuration = 30;
     private decimal newPrice;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await LoadServices();
+        LoadServices();
     }
 
-    private async Task LoadServices()
+    private void LoadServices()
     {
-        services = await Db.ServiceTypes.OrderBy(s => s.SortOrder).ToListAsync();
+        services = Store.ServiceTypes.OrderBy(s => s.SortOrder).ToList();
     }
 
     private async Task Save()
     {
         saving = true;
-        await Db.SaveChangesAsync();
+        await Store.UpdateServiceTypesAsync();
         saving = false;
         saved = true;
     }
 
     private async Task AddService()
     {
-        if (string.IsNullOrWhiteSpace(newName))
-        {
-            return;
-        }
-
+        if (string.IsNullOrWhiteSpace(newName)) return;
         var maxSort = services?.Count > 0 ? services.Max(s => s.SortOrder) : 0;
-
-        Db.ServiceTypes.Add(new ServiceType
+        await Store.AddServiceTypeAsync(new ServiceType
         {
             Name = newName.Trim(),
             DurationMinutes = newDuration <= 0 ? 30 : newDuration,
@@ -121,12 +115,9 @@ else
             SortOrder = maxSort + 1,
             Icon = "bi-stars"
         });
-        await Db.SaveChangesAsync();
-
         newName = string.Empty;
         newDuration = 30;
         newPrice = 0;
-
-        await LoadServices();
+        LoadServices();
     }
 }

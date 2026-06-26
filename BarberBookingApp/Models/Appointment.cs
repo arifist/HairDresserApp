@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BarberBookingApp.Models;
 
 public class Appointment
@@ -5,10 +7,14 @@ public class Appointment
     public int Id { get; set; }
 
     public int CustomerId { get; set; }
+    [JsonIgnore]
     public Customer? Customer { get; set; }
 
     public int ServiceTypeId { get; set; }
+    [JsonIgnore]
     public ServiceType? ServiceType { get; set; }
+    [JsonIgnore]
+    public List<AppointmentServiceItem> ServiceItems { get; set; } = new();
 
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }

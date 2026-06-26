@@ -1,7 +1,0 @@
-**/bin/
-**/obj/
-**/.vs/
-publish_output/
-BerberArif/App_Data/
-*.log
-run.pid

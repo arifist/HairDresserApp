@@ -6,4 +6,4 @@ public interface IOtpService
     Task<bool> VerifyCodeAsync(string phoneNumber, string code);
 }
 
-public record OtpRequestResult(bool Success, string? ErrorMessage, string? DisplayCode = null);
+public record OtpRequestResult(bool Success, string? ErrorMessage);

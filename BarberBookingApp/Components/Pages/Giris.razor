@@ -1,6 +1,6 @@
 @page "/giris"
 @rendermode InteractiveServer
-@using BarberBookingApp.Helpers
+@inject IOtpService OtpService
 
 <PageTitle>Giriş Yap | Kuaför Arif</PageTitle>
 
@@ -8,37 +8,95 @@
     <div class="container" style="max-width:480px;">
         <div class="ka-form-card">
             <h3 class="text-center mb-1">Giriş Yap</h3>
-            <p class="text-muted text-center mb-4">Telefon numaranızla giriş yapın</p>
+            <p class="text-muted text-center mb-4">Telefon numaranız ve ad soyadınızla demo giriş yapın</p>
 
             @if (Error == "name-required")
             {
                 <div class="alert alert-warning small">Yeni üyelik için lütfen ad soyad bilgisini de girin.</div>
             }
-            else if (Error == "invalid-phone")
+            else if (Error == "invalid-code")
             {
-                <div class="alert alert-danger small">Geçersiz telefon numarası. Lütfen 5 ile başlayan 10 haneli numaranızı girin.</div>
+                <div class="alert alert-danger small">Girdiğiniz kod geçersiz veya süresi dolmuş. Lütfen tekrar deneyin.</div>
             }
 
-            <form method="post" action="/api/auth/verify-otp">
-                <input type="hidden" name="returnUrl" value="@ReturnUrl" />
+            @if (!codeSent)
+            {
                 <div class="mb-3">
                     <label class="form-label">Telefon Numarası</label>
-                    <input type="tel" name="phoneNumber" class="form-control" value="@Phone" placeholder="5XX XXX XX XX" autocomplete="tel" />
-                    <small class="text-muted">Başında 0 olmadan, 5 ile başlayan 10 haneli numaranızı girin.</small>
+                    <input type="tel" class="form-control" @bind="phoneNumber" @bind:event="oninput" placeholder="05XX XXX XX XX" />
                 </div>
-                <div class="mb-4">
-                    <label class="form-label">Ad Soyad</label>
-                    <input type="text" name="fullName" class="form-control" placeholder="Adınız Soyadınız" autocomplete="name" />
-                    <small class="text-muted">Yeni üyelikse zorunlu, mevcut hesabınız varsa boş bırakabilirsiniz.</small>
+                <div class="mb-3">
+                    <label class="form-label">Ad Soyad <span class="text-muted small">(yeni üyelik için)</span></label>
+                    <input type="text" class="form-control" @bind="fullName" @bind:event="oninput" placeholder="Adınız Soyadınız" />
                 </div>
-                <button type="submit" class="btn btn-gold w-100">Giriş Yap</button>
-            </form>
+                @if (!string.IsNullOrEmpty(requestError))
+                {
+                    <div class="alert alert-danger small">@requestError</div>
+                }
+                <button class="btn btn-gold w-100" @onclick="RequestCode" disabled="@requesting">
+                    @(requesting ? "Hazırlanıyor..." : "Devam Et")
+                </button>
+            }
+            else
+            {
+                <div class="alert alert-info small">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Demo modunda SMS gönderilmez. Giriş kodu: <strong>0000</strong>
+                </div>
+                <p class="text-muted small mb-3">
+                    <strong>@phoneNumber</strong> numarası için demo doğrulama kodunu girin.
+                </p>
+                <form method="post" action="/api/auth/verify-otp">
+                    <input type="hidden" name="phoneNumber" value="@phoneNumber" />
+                    <input type="hidden" name="fullName" value="@fullName" />
+                    <input type="hidden" name="returnUrl" value="@ReturnUrl" />
+                    <div class="mb-3">
+                        <label class="form-label">Doğrulama Kodu</label>
+                        <input type="text" name="code" class="form-control text-center" maxlength="4" inputmode="numeric" placeholder="0000" required />
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100">Doğrula ve Giriş Yap</button>
+                </form>
+                <button class="btn btn-link w-100 mt-2 text-muted" @onclick="() => codeSent = false">
+                    Numarayı değiştir
+                </button>
+            }
         </div>
     </div>
 </section>
 
 @code {
-    [SupplyParameterFromQuery] public string? ReturnUrl { get; set; }
-    [SupplyParameterFromQuery] public string? Error   { get; set; }
-    [SupplyParameterFromQuery] public string? Phone   { get; set; }
+    [SupplyParameterFromQuery]
+    public string? ReturnUrl { get; set; }
+
+    [SupplyParameterFromQuery]
+    public string? Error { get; set; }
+
+    [SupplyParameterFromQuery]
+    public string? Phone { get; set; }
+
+    private string phoneNumber = string.Empty;
+    private string fullName = string.Empty;
+    private bool codeSent;
+    private bool requesting;
+    private string? requestError;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrWhiteSpace(Phone)) phoneNumber = Phone;
+    }
+
+    private async Task RequestCode()
+    {
+        requestError = null;
+        if (string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber.Where(char.IsDigit).Count() < 10)
+        {
+            requestError = "Lütfen geçerli bir telefon numarası girin.";
+            return;
+        }
+        requesting = true;
+        var result = await OtpService.RequestCodeAsync(phoneNumber.Trim());
+        requesting = false;
+        if (!result.Success) { requestError = result.ErrorMessage; return; }
+        codeSent = true;
+    }
 }

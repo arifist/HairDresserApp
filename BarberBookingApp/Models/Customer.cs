@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BarberBookingApp.Models;
 
@@ -14,5 +15,6 @@ public class Customer
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+    [JsonIgnore]
     public List<Appointment> Appointments { get; set; } = new();
 }

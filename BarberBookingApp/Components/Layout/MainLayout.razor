@@ -1,7 +1,4 @@
 @inherits LayoutComponentBase
-@implements IDisposable
-@inject NavigationManager Nav
-@inject IJSRuntime JS
 
 <div class="d-flex flex-column min-vh-100">
     <NavMenu />
@@ -18,20 +15,3 @@
     <a href="." class="reload">Yenile</a>
     <span class="dismiss">🗙</span>
 </div>
-
-@code {
-    protected override void OnInitialized()
-    {
-        Nav.LocationChanged += OnLocationChanged;
-    }
-
-    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        await JS.InvokeVoidAsync("window.scrollTo", 0, 0);
-    }
-
-    public void Dispose()
-    {
-        Nav.LocationChanged -= OnLocationChanged;
-    }
-}
